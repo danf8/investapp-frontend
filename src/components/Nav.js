@@ -1,6 +1,12 @@
+import {Link } from 'react-router-dom';
+
 const Nav = (props) => {
     return (
-        <h1>Nav component</h1>
+        <nav>
+            <Link to='/stocks'>
+                <div>Stock App</div>
+            </Link>
+        </nav>
     );
 };
 
