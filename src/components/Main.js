@@ -1,5 +1,5 @@
 import {Routes, Route} from 'react-router-dom';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import Index from '../pages/Index';
 
 const Main = (props) => {
@@ -12,9 +12,15 @@ const Main = (props) => {
             const data = await response.json();
             setStocks(data);
         } catch (error) {
-            console.log(error);
+            //used for error handling
         };
     };
+
+    const getStockRef = useRef();
+
+    useEffect(() => {
+        getStockRef.current = getStocks;
+    })
 
     useEffect(() => {
         getStocks();

@@ -28,6 +28,24 @@
   color: #61dafb;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+
+.stock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stock-name {
+  max-width: 400px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +54,4 @@
     transform: rotate(360deg);
   }
 }
+
