@@ -12,3 +12,39 @@ code {
     monospace;
 }
 
+
+
+/* nav page */
+.nav{
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nav ul{
+  display: flex;
+  list-style: none;
+  margin-left: auto;
+  margin-right: 1px;
+  justify-content: space-around;
+}
+
+.nav li{
+  margin-right: 10px;
+}
+
+.nav img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.nav button{
+  font-size: 20px;
+  border: none;
+  color: inherit;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+
