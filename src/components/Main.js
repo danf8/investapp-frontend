@@ -1,6 +1,7 @@
 import {Routes, Route} from 'react-router-dom';
 import {useEffect, useState, useRef} from 'react';
 import Index from '../pages/Index';
+import Show from '../pages/Show';
 
 const Main = (props) => {
     const [stocks, setStocks ] = useState(null);
@@ -30,6 +31,7 @@ const Main = (props) => {
         <main>
             <Routes>
                 < Route path='/stocks' element={<Index stocks={stocks} />}/>
+                < Route path='/stocks/:id' element={ < Show stocks={stocks}/>} />
             </Routes>
         </main>
     );
