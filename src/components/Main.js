@@ -20,7 +20,7 @@ const Main = (props) => {
 
     useEffect(() => {
         getStockRef.current = getStocks;
-    })
+    });
 
     useEffect(() => {
         getStocks();
