@@ -1,6 +1,11 @@
 import { useParams } from "react-router-dom";
+import { useState } from 'react';
 
 const Show = (props) => {
+    const [newForm, setForm] = useState({
+        
+    })
+
     const { id } = useParams();
     const stocks = props.stocks;
     const stock = stocks ? stocks.find((s) => s._id === id) : null;
@@ -24,6 +29,11 @@ const Show = (props) => {
     return(
         <div className="stock">
             {stock ? loadedStocks() : loadingStocks()}
+            <section>
+                <form action="">
+                    <input type="text" />
+                </form>
+            </section>
         </div>
     );
 };
