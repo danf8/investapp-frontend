@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const Index = (props) => {
 
     const loadStocks = () => {
-        return props.stocks.map((stock) => (
-            <div>
-                <h1>{stock.name}</h1>
-                <h2>${stock.price}</h2>
+        return props.stocks.map((stock,index) => (
+            <div className="stock" key={index}>
+                <p className="stock-name">{stock.name}</p>
+                <p>${stock.price}</p>
             </div>
         ));
     };
