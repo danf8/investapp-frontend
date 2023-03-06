@@ -8,10 +8,20 @@ const Main = (props) => {
     const API_URL = "http://localhost:3001/stocks";
 
     const getStocks = async () => {
+        let token;
+
         try {
-            const response = await fetch(API_URL);
-            const data = await response.json();
-            setStocks(data);
+            if(props.user){
+                token = await props.user.getIdToken();
+                const response = await fetch(API_URL, {
+                    method: 'GET',
+                    headers:{
+                        'Authorization': 'Bearer ' + token
+                    }
+                });
+                const data = await response.json();
+                setStocks(data);
+            }
         } catch (error) {
             //used for error handling
         };
@@ -25,7 +35,7 @@ const Main = (props) => {
 
     useEffect(() => {
         getStocks();
-    }, []);
+    }, [props.user]);
 
     return(
         <main>
