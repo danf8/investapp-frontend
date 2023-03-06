@@ -4,7 +4,7 @@ const Index = (props) => {
 
     const loadStocks = () => {
         return props.stocks.map((stock,index) => (
-            <div className="stock" key={index}>
+            <div className="stocks" key={index}>
                 <Link to={`/stocks/${stock._id}`}>
                     <p className="stock-name">{stock.name}</p>
                 </Link>

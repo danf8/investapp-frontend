@@ -16,6 +16,18 @@ const Main = (props) => {
             //used for error handling
         };
     };
+    
+    const updateStockComment = async (stock, id) => {
+        
+        await fetch(API_URL + '/' + id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'Application/json',
+            },
+            body: JSON.stringify(stock),
+        });
+        getStocks();
+    };
 
     const getStockRef = useRef();
 
@@ -31,7 +43,7 @@ const Main = (props) => {
         <main>
             <Routes>
                 < Route path='/stocks' element={<Index stocks={stocks} />}/>
-                < Route path='/stocks/:id' element={ < Show stocks={stocks}/>} />
+                < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
             </Routes>
         </main>
     );
