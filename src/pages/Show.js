@@ -33,6 +33,15 @@ const Show = (props) => {
             </>
         );
     };
+
+    const newTest = stock.comments.map((c,i) => ( 
+        <ul key={i}>
+            <li className="comments" key={i}>
+                {c}
+            </li>
+        </ul>
+    ));
+
     useEffect(() => {
         if(stock) {
             setCommentForm(stock);
@@ -46,6 +55,7 @@ const Show = (props) => {
     return(
         <div className="stock">
             {stock ? loadedStocks() : loadingStocks()}
+            {newTest}
             <section>
                 <form onSubmit={handleUpdate}>
                     <input type="text" name="comments" onChange={handleChange}/>
