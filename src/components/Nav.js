@@ -10,7 +10,7 @@ const Nav = (props) => {
         <ul>
         {props.user ? 
         <>
-        <li>Welcome, {props.user.displayName}</li>
+        <li>Welcome, {props.user.displayName.split(' ', 1)}</li>
         <li> 
           <img src={props.user.photoURL} alt={props.user.displayName} />
         </li>
