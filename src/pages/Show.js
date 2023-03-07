@@ -34,7 +34,7 @@ const Show = (props) => {
         );
     };
 
-    const newTest = stock.comments.map((c,i) => ( 
+    const loadComments = stock.comments.map((c,i) => ( 
         <ul key={i}>
             <li className="comments" key={i}>
                 {c}
@@ -55,7 +55,7 @@ const Show = (props) => {
     return(
         <div className="stock">
             {stock ? loadedStocks() : loadingStocks()}
-            {newTest}
+            {loadComments}
             <section>
                 <form onSubmit={handleUpdate}>
                     <input type="text" name="comments" onChange={handleChange}/>
