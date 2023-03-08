@@ -37,6 +37,13 @@ const Show = (props) => {
         );
     };
 
+    // useEffect(() => {
+    //     if(stock) {
+    //         setCommentForm(stock);
+    //     };
+    // },[]);
+
+
     const loadComments = stock.comments.map((c,i) => ( 
         <ul key={i}>
             <li className="comments" key={i}>
@@ -48,6 +55,7 @@ const Show = (props) => {
     const noComments = () => {
        return <p>Be the first to comment on {stock.name}</p>;
     };
+
 
     const loadingStocks = () => {
         return <h1>Loading Stocks...</h1>;
