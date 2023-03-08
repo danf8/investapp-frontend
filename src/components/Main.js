@@ -1,62 +1,74 @@
-import {Routes, Route} from 'react-router-dom';
-import {useEffect, useState, useRef} from 'react';
+import {
+    Routes,
+    Route
+} from 'react-router-dom';
+import {
+    useEffect,
+    useState,
+    useRef
+} from 'react';
 import Index from '../pages/Index';
 import Show from '../pages/Show';
 
 const Main = (props) => {
-    const [stocks, setStocks ] = useState(null);
-    const API_URL = "http://localhost:3001/stocks";
+        const [stocks, setStocks] = useState(null);
+        const API_URL = "http://localhost:3001/stocks";
 
-    const getStocks = async () => {
-        let token;
+        const getStocks = async () => {
 
-        try {
-            if(props.user){
-                token = await props.user.getIdToken();
-                const response = await fetch(API_URL, {
-                    method: 'GET',
-                    headers:{
-                        'Authorization': 'Bearer ' + token
-                    }
-                });
-                const data = await response.json();
-                setStocks(data);
-            }
-        } catch (error) {
-            //used for error handling
+            try {
+                if (props.user) {
+                    const token = await props.user.getIdToken();
+                    const response = await fetch(API_URL, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        }
+                    });
+                    const data = await response.json();
+                    setStocks(data);
+                }
+            } catch (error) {
+                console.error(error);
+            };
         };
-    };
-    
-    const updateStockComment = async (stock, id) => {
-        
-        await fetch(API_URL + '/' + id, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'Application/json',
-            },
-            body: JSON.stringify(stock),
+
+        const updateStockComment = async (stock, id) => {
+            try {
+                if (props.user) {
+                    const token = await props.user.getIdToken();
+                    await fetch(API_URL + '/' + id, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'Application/json',
+                            'Authorization': 'Bearer ' + token
+                        },
+                        body: JSON.stringify(stock),
+                    });
+                    getStocks();
+                };
+            } catch (error) {
+                console.error(error);
+            };
+        };
+        const getStockRef = useRef();
+
+        useEffect(() => {
+            getStockRef.current = getStocks;
         });
-        getStocks();
+
+        useEffect(() => {
+            getStocks();
+        }, [props.user]);
+
+        return(
+            <main>
+                <Routes>
+                    < Route path='/stocks' element={<Index stocks={stocks} />}/>
+                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
+                </Routes>
+            </main>
+        );
     };
 
-    const getStockRef = useRef();
-
-    useEffect(() => {
-        getStockRef.current = getStocks;
-    });
-
-    useEffect(() => {
-        getStocks();
-    }, [props.user]);
-
-    return(
-        <main>
-            <Routes>
-                < Route path='/stocks' element={<Index stocks={stocks} />}/>
-                < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
-            </Routes>
-        </main>
-    );
-};
-
-export default Main;
+                export default Main;
