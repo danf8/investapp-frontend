@@ -17,7 +17,18 @@ const Index = (props) => {
         return <h1>Loading Stocks....</h1>;
     };
 
-    return props.stocks ? loadStocks() : loadingStocks();
+    return (
+        <>
+        {
+            !props.user ? 
+            <h2>Please Login to access stock info</h2>
+            :
+            <section>
+            {props.stocks ? loadStocks() : loadingStocks()}
+            </section>
+        }
+        </>
+    )
 }
 
 export default Index;

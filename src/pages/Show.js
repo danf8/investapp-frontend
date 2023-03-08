@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const Show = (props) => {
     const { id } = useParams();
@@ -33,11 +33,11 @@ const Show = (props) => {
             </>
         );
     };
-    useEffect(() => {
-        if(stock) {
-            setCommentForm(stock);
-        };
-    },[]);
+    // useEffect(() => {
+    //     if(stock) {
+    //         setCommentForm(stock);
+    //     };
+    // },[]);
 
     const loadingStocks = () => {
         return <h1>Loading Stocks...</h1>;

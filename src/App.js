@@ -8,7 +8,10 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(()=>{
-    auth.onAuthStateChanged(user=>setUser(user))
+    const unsubscribe = auth.onAuthStateChanged(user=>setUser(user))
+    return()=>{
+      unsubscribe();
+    }
   },[]);
 
   return (

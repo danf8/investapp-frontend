@@ -1,12 +1,5 @@
-import {
-    Routes,
-    Route
-} from 'react-router-dom';
-import {
-    useEffect,
-    useState,
-    useRef
-} from 'react';
+import { Routes, Route} from 'react-router-dom';
+import { useEffect, useState,useRef } from 'react';
 import Index from '../pages/Index';
 import Show from '../pages/Show';
 
@@ -58,13 +51,17 @@ const Main = (props) => {
         });
 
         useEffect(() => {
-            getStocks();
+            if(props.user){
+                getStocks();
+            }else{
+                getStocks(null);
+            }
         }, [props.user]);
 
         return(
             <main>
                 <Routes>
-                    < Route path='/stocks' element={<Index stocks={stocks} />}/>
+                    < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
                 </Routes>
             </main>
