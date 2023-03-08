@@ -1,5 +1,5 @@
 import { Routes, Route} from 'react-router-dom';
-import { useEffect, useState,useRef } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Index from '../pages/Index';
 import Show from '../pages/Show';
 
@@ -7,8 +7,7 @@ const Main = (props) => {
         const [stocks, setStocks] = useState(null);
         const API_URL = "http://localhost:3001/stocks";
 
-        const getStocks = async () => {
-
+        const getStocks = useCallback(async () => {
             try {
                 if (props.user) {
                     const token = await props.user.getIdToken();
@@ -24,7 +23,7 @@ const Main = (props) => {
             } catch (error) {
                 console.error(error);
             };
-        };
+        }, [props.user])
 
         const updateStockComment = async (stock, id) => {
             try {
@@ -44,11 +43,6 @@ const Main = (props) => {
                 console.error(error);
             };
         };
-        const getStockRef = useRef();
-
-        useEffect(() => {
-            getStockRef.current = getStocks;
-        });
 
         useEffect(() => {
             if(props.user){
@@ -56,7 +50,7 @@ const Main = (props) => {
             }else{
                 getStocks(null);
             }
-        }, [props.user]);
+        }, [props.user,getStocks]);
 
         return(
             <main>
