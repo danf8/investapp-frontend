@@ -19,6 +19,9 @@ const Show = (props) => {
     const handleUpdate = (event) => {
         event.preventDefault();
         props.updateStockComment(newForm, stock._id);
+        setCommentForm({
+            comments: ''
+        });
     };
  
     const loadedStocks = () => {
@@ -33,11 +36,26 @@ const Show = (props) => {
             </>
         );
     };
+
     // useEffect(() => {
     //     if(stock) {
     //         setCommentForm(stock);
     //     };
     // },[]);
+
+
+    const loadComments = stock.comments.map((c,i) => ( 
+        <ul key={i}>
+            <li className="comments" key={i}>
+                {c}
+            </li>
+        </ul>
+    ));
+    
+    const noComments = () => {
+       return <p>Be the first to comment on {stock.name}</p>;
+    };
+
 
     const loadingStocks = () => {
         return <h1>Loading Stocks...</h1>;
@@ -46,9 +64,10 @@ const Show = (props) => {
     return(
         <div className="stock">
             {stock ? loadedStocks() : loadingStocks()}
+            {loadComments.length > 0 ? loadComments : noComments()}
             <section>
                 <form onSubmit={handleUpdate}>
-                    <input type="text" name="comments" onChange={handleChange}/>
+                    <input type="text" name="comments" value={newForm.comments} onChange={handleChange}/>
                     <input type="submit" value="submit"/>
                 </form>
             </section>
