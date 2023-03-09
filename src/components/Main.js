@@ -7,7 +7,10 @@ import SignUp from '../pages/Signup';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
+
         const API_URL = "http://localhost:5000/stocks";
+
+
 
         const getStocks = useCallback(async () => {
             try {

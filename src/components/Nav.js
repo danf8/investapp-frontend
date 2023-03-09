@@ -12,6 +12,7 @@ const Nav = (props) => {
             <Link to="/stocks">
               <div>Stock App</div>
             </Link>
+
             <li>Welcome, {props.user.displayName.split(' ', 1)}</li>
             <li>
               <img src={props.user.photoURL} alt={props.user.displayName} />
@@ -43,6 +44,7 @@ const Nav = (props) => {
             })()}
           </>
         )}
+
       </ul>
     </nav>
   );
