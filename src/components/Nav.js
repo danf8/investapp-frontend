@@ -20,7 +20,9 @@ const Nav = (props) => {
         </>
         :
         <li>
-          <button onClick={login}>Login</button>
+          <Link to='/stocks'>
+            <button onClick={login}>Login</button>
+          </Link>
         </li>
         }
       </ul>
