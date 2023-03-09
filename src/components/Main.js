@@ -2,10 +2,12 @@ import { Routes, Route} from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
 import Index from '../pages/Index';
 import Show from '../pages/Show';
+import Login from '../pages/Login';
+import SignUp from '../pages/Signup';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-        const API_URL = "http://localhost:3001/stocks";
+        const API_URL = "http://localhost:5000/stocks";
 
         const getStocks = useCallback(async () => {
             try {
@@ -57,6 +59,8 @@ const Main = (props) => {
                 <Routes>
                     < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
+                    < Route path='/login' element={<Login />}/>
+                    < Route path='/signup' element={<SignUp/>}/>
                 </Routes>
             </main>
         );
