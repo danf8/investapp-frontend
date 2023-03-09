@@ -37,13 +37,6 @@ const Show = (props) => {
         );
     };
 
-    // useEffect(() => {
-    //     if(stock) {
-    //         setCommentForm(stock);
-    //     };
-    // },[]);
-
-
     const loadComments = stock.comments.map((c,i) => ( 
         <ul key={i}>
             <li className="comments" key={i}>

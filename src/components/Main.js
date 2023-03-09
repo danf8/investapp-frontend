@@ -5,7 +5,7 @@ import Show from '../pages/Show';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-        const API_URL = "http://localhost:3001/stocks";
+        const API_URL = "http://localhost:3002/stocks";
 
         const getStocks = useCallback(async () => {
             try {
