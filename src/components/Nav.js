@@ -1,33 +1,53 @@
-import {Link } from 'react-router-dom';
-import {login, logout} from '../firebase';
+import { Link, useLocation } from 'react-router-dom';
+import { login, logout } from '../firebase';
 
 const Nav = (props) => {
-    return (
-        <nav className="nav">
-            <Link to='/stocks'>
-                <div>Stock App</div>
+  const location = useLocation();
+
+  return (
+    <nav className="nav">
+      <ul>
+        {props.user ? (
+          <>
+            <Link to="/stocks">
+              <div>Stock App</div>
             </Link>
-        <ul>
-        {props.user ? 
-        <>
-        <li>Welcome, {props.user.displayName.split(' ', 1)}</li>
-        <li> 
-          <img src={props.user.photoURL} alt={props.user.displayName} />
-        </li>
-        <li>
-          <button onClick={logout}>Logout</button>
-        </li>
-        </>
-        :
-        <li>
-          <Link to='/stocks'>
-            <button onClick={login}>Login</button>
-          </Link>
-        </li>
-        }
+
+            <li>Welcome, {props.user.displayName.split(' ', 1)}</li>
+            <li>
+              <img src={props.user.photoURL} alt={props.user.displayName} />
+            </li>
+            <li>
+              <button onClick={logout}>Logout</button>
+            </li>
+          </>
+        ) : (
+          <>
+            {(() => {
+              if (location.pathname !== '/login' && location.pathname !== '/signup') {
+                return (
+                  <>
+                    <Link to="/login">
+                      <button>Login</button>
+                    </Link>
+                    <Link to="/signup">
+                      <button>Sign up</button>
+                    </Link>
+                    <li>
+                      <Link to="/stocks">
+                        <button onClick={login}>Login with Google</button>
+                      </Link>
+                    </li>
+                  </>
+                );
+              }
+            })()}
+          </>
+        )}
+
       </ul>
-        </nav>
-    );
+    </nav>
+  );
 };
 
 export default Nav;
