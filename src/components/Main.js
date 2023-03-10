@@ -7,8 +7,8 @@ import SignUp from '../pages/Signup';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-
-        const API_URL = "http://localhost:3002/stocks";
+        const [filteredStocks, setFilteredStocks] = useState(null);
+        const API_URL = "http://localhost:5000/stocks";
 
 
 
@@ -24,6 +24,7 @@ const Main = (props) => {
                     });
                     const data = await response.json();
                     setStocks(data);
+                    setFilteredStocks(data);
                 }
             } catch (error) {
                 console.error(error);
@@ -54,13 +55,14 @@ const Main = (props) => {
                 getStocks();
             }else{
                 getStocks(null);
+                setFilteredStocks(null);
             }
         }, [props.user,getStocks]);
 
         return(
             <main>
                 <Routes>
-                    < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
+                    < Route path='/stocks' element={<Index user={props.user} stocks={filteredStocks} setFilteredStocks={setFilteredStocks}/>}/>
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
                     < Route path='/login' element={<Login />}/>
                     < Route path='/signup' element={<SignUp/>}/>
