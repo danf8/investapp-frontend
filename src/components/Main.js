@@ -23,7 +23,7 @@ const Main = (props) => {
             } catch (error) {
                 console.error(error);
             };
-        }, [props.user])
+        }, [props.user]);
 
         const updateStockComment = async (stock, id) => {
             try {
