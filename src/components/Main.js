@@ -4,11 +4,12 @@ import Index from '../pages/Index';
 import Show from '../pages/Show';
 import Login from '../pages/Login';
 import SignUp from '../pages/Signup';
+import Homepage from '../pages/Homepage';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-        const [filteredStocks, setFilteredStocks] = useState(null);
-        const API_URL = "http://localhost:5000/stocks";
+        // const [filteredStocks, setFilteredStocks] = useState(null);
+        const API_URL = "http://localhost:3002/stocks";
 
 
 
@@ -24,12 +25,12 @@ const Main = (props) => {
                     });
                     const data = await response.json();
                     setStocks(data);
-                    setFilteredStocks(data);
+                    // setFilteredStocks(data);
                 }
             } catch (error) {
                 console.error(error);
             };
-        }, [props.user])
+        }, [props.user]);
 
         const updateStockComment = async (stock, id) => {
             try {
@@ -55,14 +56,15 @@ const Main = (props) => {
                 getStocks();
             }else{
                 getStocks(null);
-                setFilteredStocks(null);
+                // setFilteredStocks(null);
             }
         }, [props.user,getStocks]);
 
         return(
             <main>
                 <Routes>
-                    < Route path='/stocks' element={<Index user={props.user} stocks={filteredStocks} setFilteredStocks={setFilteredStocks}/>}/>
+                    < Route path='/' element={<Homepage />} />
+                    < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
                     < Route path='/login' element={<Login />}/>
                     < Route path='/signup' element={<SignUp/>}/>
