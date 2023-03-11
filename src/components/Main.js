@@ -4,6 +4,7 @@ import Index from '../pages/Index';
 import Show from '../pages/Show';
 import Login from '../pages/Login';
 import SignUp from '../pages/Signup';
+import Homepage from '../pages/Homepage';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
@@ -62,6 +63,7 @@ const Main = (props) => {
         return(
             <main>
                 <Routes>
+                    < Route path='/' element={<Homepage />} />
                     < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
                     < Route path='/login' element={<Login />}/>

@@ -18,7 +18,9 @@ const Nav = (props) => {
               <img src={props.user.photoURL} alt={props.user.displayName} />
             </li>
             <li>
+              <Link to='/'>
                 <button onClick={logout}>Logout</button>
+              </Link>
             </li>
           </>
         ) : (
