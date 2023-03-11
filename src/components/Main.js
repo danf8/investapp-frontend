@@ -62,13 +62,13 @@ const Main = (props) => {
             } catch (error) {
                 console.log(error);
             };
-        }, [props.user])
+        }, [props.user]);
 
         useEffect(() => {
                 setInterval(() => {
                 const time = new Date();
                 const utcTime = time.getUTCHours();
-                const estTime = (utcTime - 5 + 24) %24;
+                const estTime = (utcTime - 5);
                 if(estTime === 16) {
                     updateStockValues()
                 }
