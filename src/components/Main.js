@@ -8,10 +8,7 @@ import Homepage from '../pages/Homepage';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-        // const [filteredStocks, setFilteredStocks] = useState(null);
         const API_URL = "http://localhost:3002/stocks";
-
-
 
         const getStocks = useCallback(async () => {
             try {
@@ -25,7 +22,6 @@ const Main = (props) => {
                     });
                     const data = await response.json();
                     setStocks(data);
-                    // setFilteredStocks(data);
                 }
             } catch (error) {
                 console.error(error);
@@ -51,14 +47,38 @@ const Main = (props) => {
             };
         };
 
+        const updateStockValues =useCallback( async () => {
+            try{
+                if (props.user) {
+                    const token = await props.user.getIdToken();
+                    await fetch(API_URL + '/update-prices',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'Application/json',
+                            'Authorization': 'Bearer ' + token
+                        },
+                    });
+                }
+            } catch (error) {
+                console.log(error);
+            };
+        }, [props.user]);
+
         useEffect(() => {
+                setInterval(() => {
+                const time = new Date();
+                const utcTime = time.getUTCHours();
+                const estTime = (utcTime - 5);
+                if(estTime === 16) {
+                    updateStockValues()
+                }
+            }, 1000* 60 * 60);
             if(props.user){
                 getStocks();
             }else{
                 getStocks(null);
-                // setFilteredStocks(null);
             }
-        }, [props.user,getStocks]);
+        }, [props.user,getStocks, updateStockValues ]);
 
         return(
             <main>
