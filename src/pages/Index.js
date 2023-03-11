@@ -47,7 +47,7 @@ const Index = (props) => {
     return (
         <>
           {props.user ? (
-            <div class="search-container">
+            <div className="search-container">
               <input
                 type="text"
                 placeholder="Search Stocks"
