@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {GoogleAuthProvider, signInWithPopup, signOut, getAuth} from 'firebase/auth';
+import {GoogleAuthProvider, signInWithPopup, signOut, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,6 +24,14 @@ const provider = new GoogleAuthProvider();
 //create a ref to our firebase auth instance
 const auth = getAuth(app);
 
+//config signup & sign in
+function signUp(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password);
+};
+function signIn(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
+};
+
 //config login & logout workflows
 function login(){
   return signInWithPopup(auth, provider);
@@ -33,4 +42,4 @@ function logout(){
 };
 
 //export functionality for access inside of React
-export {login, logout, auth};
+export {signUp, signIn, login, logout, auth, app};

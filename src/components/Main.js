@@ -2,16 +2,14 @@ import { Routes, Route} from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
 import Index from '../pages/Index';
 import Show from '../pages/Show';
-import Login from '../pages/Login';
+import Signin from '../pages/Signin';
 import SignUp from '../pages/Signup';
 import Homepage from '../pages/Homepage';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
         // const [filteredStocks, setFilteredStocks] = useState(null);
-        const API_URL = "http://localhost:3002/stocks";
-
-
+        const API_URL = "http://localhost:5000/stocks";
 
         const getStocks = useCallback(async () => {
             try {
@@ -66,11 +64,11 @@ const Main = (props) => {
                     < Route path='/' element={<Homepage />} />
                     < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
-                    < Route path='/login' element={<Login />}/>
+                    < Route path='/signin' element={<Signin />}/>
                     < Route path='/signup' element={<SignUp/>}/>
                 </Routes>
             </main>
         );
     };
 
-                export default Main;
+export default Main;
