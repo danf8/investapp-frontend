@@ -1,15 +1,50 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { signUp} from '../firebase';
+
 function SignUp(props){
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [displayName, setDisplayName] = useState('');
+
+    //submit
+    const handleSignup = async (event) => {
+    
+      try {
+        await signUp(email, password, displayName);
+        console.log("User signed up successfully");
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+    //on change
+    const handleNameChange = (event) => {
+      setDisplayName(event.target.value);
+    };
+
+    const handleEmailChange = (event) => {
+      setEmail(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+      setPassword(event.target.value);
+    };
+
     return (
     <>
     <h1>Sign Up Page</h1>
-    <form action="/signup" method='POST'>
+    <form onSubmit={handleSignup}>
         <label>
-             Email: <input type="email" name="email" required/>
+             Display Name: <input type="text" value={displayName} onChange={handleNameChange} />
         </label><br/><br/>
         <label>
-            Password: <input type="password" name="password" required/>
+             Email: <input type="email" name="email" value={email} onChange={handleEmailChange} required/>
         </label><br/><br/>
-        <a href="/login">Sign in instead</a>
+        <label>
+            Password: <input type="password" name="password" value={password} onChange={handlePasswordChange} required/>
+        </label><br/><br/>
+        <Link to="/signin">Sign in instead</Link>
         <input id="SignupBtn" type="submit" value="Sign Up"/>
     </form>
     </>

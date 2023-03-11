@@ -29,8 +29,8 @@ const Nav = (props) => {
               if (location.pathname !== '/login' && location.pathname !== '/signup') {
                 return (
                   <>
-                    <Link to="/login">
-                      <button>Login</button>
+                    <Link to="/signin">
+                      <button>Signin</button>
                     </Link>
                     <Link to="/signup">
                       <button>Sign up</button>
