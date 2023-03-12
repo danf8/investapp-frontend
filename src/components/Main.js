@@ -64,7 +64,7 @@ const Main = (props) => {
                     < Route path='/' element={<Homepage />} />
                     < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
-                    < Route path='/signin' element={<Signin />}/>
+                    < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
                 </Routes>
             </main>
