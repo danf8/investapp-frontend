@@ -8,10 +8,7 @@ import Homepage from '../pages/Homepage';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-
-        // const [filteredStocks, setFilteredStocks] = useState(null);
-        const API_URL = "http://localhost:5000/stocks";
-
+        const API_URL = "http://localhost:3002/stocks";
 
         const getStocks = useCallback(async () => {
             try {

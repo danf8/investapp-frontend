@@ -58,6 +58,7 @@ const Index = (props) => {
     return (
         <>
           {props.user ? (
+          <>
             <div className="search-container">
               <input
                 type="text"
@@ -67,10 +68,11 @@ const Index = (props) => {
               />
               <button onClick={handleSearchClick}>Search</button>
             </div>
+            <section>{props.stocks ? loadStocks() : loadingStocks()}</section>
+          </>
           ) : (
             <h2>Please Login to access stock info</h2>
-          )}
-          <section>{props.stocks ? loadStocks() : loadingStocks()}</section>
+            )}
         </>
       );
 }

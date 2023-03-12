@@ -23,11 +23,66 @@ main {
   align-items: center;
 }
 
+.price {
+  margin-top: 0;
+}
+
+hr{
+   width: 90%;
+}
+
+.commentRow{
+width: 100%;
+margin-top: 4px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
 .search-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: -10px;
+}
+
+.commentBox {
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  border-radius: 6px;
+  border-color: #d1d3db;
+  justify-content: center;
+}
+
+.commentList{
+  list-style-type: none;
+  text-indent: 8px;
+  margin-left: -39px;
+  height: 5px;
+  margin-top: 5px;
+}
+
+.comments {
+  width: 450px;
+}
+
+section {
+  margin-top: 25px;
+}
+
+input[type='submit'] {
+  padding: 10px;
+  font-size: 15px;
+  border: solid;
+  border-radius: 6px;
+  border-color: #d1d3db;
+  margin: 3px;
+  background-color: #4759bc;
+  color: white;
+  cursor: pointer;
 }
 
 input[type="text"], button {
