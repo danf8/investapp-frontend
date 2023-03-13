@@ -12,7 +12,6 @@ const Nav = (props) => {
             <Link to="/stocks">
               <div>Stock App</div>
             </Link>
-
             {/* <li>Welcome, {props.user.displayName.split(' ', 1)}</li> */}
             <li>Welcome, {props.user.displayName}</li>
             <li>
