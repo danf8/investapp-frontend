@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { signUp} from '../firebase';
+import { signUp, profileUpdate} from '../firebase';
 
 function SignUp(props){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [displayName, setDisplayName] = useState('');
+    const [displayName, setDisplayName] = useState("");
 
     //submit
     const handleSignup = async (event) => {
-    
+      event.preventDefault();
       try {
-        await signUp(email, password, displayName);
-        console.log("User signed up successfully");
+        await signUp(email, password);
+        await profileUpdate(displayName);
+        // console.log("User signed up successfully");
       } catch (error) {
         console.error(error);
       }
@@ -20,6 +21,7 @@ function SignUp(props){
     
     //on change
     const handleNameChange = (event) => {
+      console.log(event.target.value); 
       setDisplayName(event.target.value);
     };
 
@@ -36,7 +38,7 @@ function SignUp(props){
     <h1>Sign Up Page</h1>
     <form onSubmit={handleSignup}>
         <label>
-             Display Name: <input type="text" value={displayName} onChange={handleNameChange} />
+             Display Name: <input type="text" name="displayName" value={displayName} onChange={handleNameChange} required/>
         </label><br/><br/>
         <label>
              Email: <input type="email" name="email" value={email} onChange={handleEmailChange} required/>
