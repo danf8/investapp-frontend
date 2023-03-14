@@ -32,8 +32,8 @@ hr{
 }
 
 .commentRow{
-width: 100%;
-margin-top: 4px;
+width: 99.8%;
+margin-top: 0px;
 }
 
 .info {
@@ -60,7 +60,7 @@ margin-top: 4px;
 .commentList{
   list-style-type: none;
   text-indent: 8px;
-  margin-left: -39px;
+  margin-left: -40px;
   height: 5px;
   margin-top: 5px;
 }

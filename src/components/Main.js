@@ -83,7 +83,7 @@ const Main = (props) => {
         return(
             <main>
                 <Routes>
-                    < Route path='/' element={<Homepage />} />
+                    < Route path='/' element={<Homepage user={props.user}/>} />
                     < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
                     < Route path='/signin' element={<Signin user={props.user}/>}/>
