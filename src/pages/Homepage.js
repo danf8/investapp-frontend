@@ -23,7 +23,8 @@ import {
 
 const Homepage = (props) => {
     const [stockIndexState, setStockIndex ] = useState(null)
-    const API_INDEX_URL = "http://localhost:5000/";
+    // const API_INDEX_URL = "http://localhost:5000/";
+    const API_INDEX_URL = "https://git.heroku.com/investing-buddy.git";
 
     const getStockIndex = async () => {
         try {
