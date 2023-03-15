@@ -9,7 +9,8 @@ import Form from '../pages/Form';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-        const API_URL = "http://localhost:5000/stocks";
+        // const API_URL = "http://localhost:5000/stocks";
+        const API_URL = "https://git.heroku.com/investing-buddy.git/stocks";
 
         const getStocks = useCallback(async () => {
             try {
