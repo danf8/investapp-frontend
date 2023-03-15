@@ -7,11 +7,12 @@ const Nav = (props) => {
             <Link to='/stocks'>
                 <div>Stock App</div>
             </Link>
+
         <ul>
-        {props.user ? 
+        {props.user ?
         <>
         <li>Welcome, {props.user.displayName.split(' ', 1)}</li>
-        <li> 
+        <li>
           <img src={props.user.photoURL} alt={props.user.displayName} />
         </li>
         <li>
