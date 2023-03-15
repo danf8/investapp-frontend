@@ -6,6 +6,7 @@ import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
+  
 
   useEffect(()=>{
     const unsubscribe = auth.onAuthStateChanged(user=>setUser(user))
@@ -16,8 +17,8 @@ function App() {
 
   return (
     <div className="App">
-        <Nav user={user}/>
-        <Main user={user}/>
+        <Nav user={user} />
+        <Main user={user} />
     </div>
   );
 }
