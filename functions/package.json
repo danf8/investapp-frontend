@@ -14,7 +14,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "firebase-admin": "^11.5.0",
+    "firebase-admin": "^11.5.0"
   },
   "devDependencies": {
     "eslint": "^8.15.0",
