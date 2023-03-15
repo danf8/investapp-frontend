@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { login, signIn } from '../firebase';
+import { loginWithGoogle, signIn } from '../firebase';
 import { useState } from 'react';
 
 function SignIn(props) {
@@ -40,7 +40,7 @@ function SignIn(props) {
         <div id='btnLi'>
           <input id='signinBtn' type='submit' value='signin'/>
           <Link to='/stocks'>
-            <button onClick={login}>Login with Google</button>
+            <button onClick={loginWithGoogle}>Login with Google</button>
           </Link>
           <Link to='/signup'>Sign Up</Link>
         </div>
