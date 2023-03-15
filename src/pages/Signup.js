@@ -13,6 +13,7 @@ function SignUp(props){
       try {
         await signUp(email, password);
         await profileUpdate(displayName);
+        console.log("display name:", displayName);
         // console.log("User signed up successfully");
       } catch (error) {
         console.error(error);

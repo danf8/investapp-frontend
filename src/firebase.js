@@ -15,7 +15,7 @@ const firebaseConfig = {
   appId: "1:181490635572:web:13ed50793a9dbbec980b61"
 };
 
-// Initialize Firebase
+// Initialize Firebase with the given configuration obj
 const app = initializeApp(firebaseConfig);
 
 //config the provider - Google
@@ -24,27 +24,31 @@ const provider = new GoogleAuthProvider();
 //create a ref to our firebase auth instance
 const auth = getAuth(app);
 
+
 //config signup & sign in
 function signUp(email, password) {
-  return createUserWithEmailAndPassword(auth, email, password);
-};
+    // Create user with email and password
+    return createUserWithEmailAndPassword(auth, email, password);
+};  
 
 function profileUpdate (displayName) {
   try {
+    console.log("Updating display name:", displayName);
     updateProfile(auth.currentUser, { displayName: displayName.toString() });
-    // console.log("Profile updated successfully");
+    console.log("Profile updated successfully");
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
 
+
 function signIn(email, password) {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
 //config login & logout workflows
-function login(){
+function loginWithGoogle(){
   return signInWithPopup(auth, provider);
 };
 
@@ -53,4 +57,4 @@ function logout(){
 };
 
 //export functionality for access inside of React
-export {signUp, signIn, login, logout, auth, app, profileUpdate};
+export {signUp, signIn, loginWithGoogle, logout, auth, app, profileUpdate};

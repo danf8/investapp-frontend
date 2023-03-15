@@ -23,7 +23,7 @@ import {
 
 const Homepage = (props) => {
     const [stockIndexState, setStockIndex ] = useState(null)
-    const API_INDEX_URL = "http://localhost:3002/";
+    const API_INDEX_URL = "http://localhost:5000/";
 
     const getStockIndex = async () => {
         try {
@@ -84,7 +84,7 @@ const Homepage = (props) => {
 
     return(
         <div>
-            <h1>Please login</h1>
+            <h1>Please login to start your journey</h1>
             {stockIndexState ?  loadChart(): loadingChart()}
         </div>
     );

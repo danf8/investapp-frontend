@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { login, logout } from '../firebase';
+import { loginWithGoogle, logout } from '../firebase';
 
 const Nav = (props) => {
   const location = useLocation();
@@ -12,13 +12,17 @@ const Nav = (props) => {
             <Link to="/stocks">
               <div>Stock App</div>
             </Link>
-            {/* <li>Welcome, {props.user.displayName.split(' ', 1)}</li> */}
+            {(!props.user.photoURL) &&
             <li>Welcome, {props.user.displayName}</li>
-            {/* {console.log(props.user)} */}
+            }
+            {console.log(props.user)}
             {(props.user.photoURL) &&
+            <>
+            <li>Welcome, {props.user.displayName.split(' ', 1)}</li>
               <li>
               <img src={props.user.photoURL} alt={props.user.displayName} />
             </li>
+            </>
             }
             <li>
               <Link to='/'>
@@ -40,7 +44,7 @@ const Nav = (props) => {
                     </Link>
                     <li>
                       <Link to="/stocks">
-                        <button onClick={login}>Login with Google</button>
+                        <button onClick={loginWithGoogle}>Login with Google</button>
                       </Link>
                     </li>
                   </>
