@@ -1,0 +1,43 @@
+input[type="text"], button {
+  padding: 10px;
+  font-size: 15px;
+  border: solid;
+  border-radius: 6px;
+  border-color: #d1d3db;
+  margin: 3px;
+}
+
+input[type="text"] {
+  width: 250px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  background-color: #4759bc;
+  color: white;
+}    
+
+.stocks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+.stock-name {
+    max-width: 400px;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.stock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+}
