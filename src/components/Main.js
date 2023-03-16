@@ -9,7 +9,7 @@ import Homepage from '../pages/Homepage';
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
         // const API_URL = "http://localhost:5000/stocks";
-        const API_URL = "https://git.heroku.com/investing-buddy.git/stocks";
+        const API_URL = "https://investing-buddy.herokuapp.com/stocks";
 
         const getStocks = useCallback(async () => {
             try {
