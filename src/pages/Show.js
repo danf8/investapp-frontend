@@ -91,7 +91,7 @@ const Show = (props) => {
                 </form>
                 <form onSubmit={handleOwnedStocksUpdate}>
                     <input type="text" name="stockSymbol" value={newBuyForm.stockSymbol} placeholder="enter the ticker symbol to purchase" onChange={handleBuyChange}/>
-                    <input type="text" name="shareNum" value={newBuyForm.shareNum} placeholder="enter the number of shares to purchase" onChange={handleBuyChange}/>
+                    <input type="number" name="shareNum" value={newBuyForm.shareNum} placeholder="enter the number of shares to purchase" onChange={handleBuyChange}/>
                     <input type="submit" value="submit"/>
                 </form>
             </section>
