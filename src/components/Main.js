@@ -56,7 +56,7 @@ const Main = (props) => {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'Application/json',
-                            'Authorization': 'Bearer' + token
+                            'Authorization': 'Bearer ' + token
                         },
                         body: JSON.stringify(stock),
                     });
