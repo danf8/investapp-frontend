@@ -47,7 +47,7 @@ const Main = (props) => {
             };
         };
 
-        const updateStockValues =useCallback( async () => {
+        const updateStockValues = useCallback(async () => {
             try{
                 if (props.user) {
                     const token = await props.user.getIdToken();
