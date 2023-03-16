@@ -10,14 +10,31 @@ const Show = (props) => {
         comments: ''
     });
 
-    const handleChange = (event) => {
+    const [newBuyForm, setBuyForm] = useState({
+        stockSymbol: '',
+        shareNum: 0
+    });
+
+    const handleBuyChange = (event) => {
+        setBuyForm((prevState) => ({
+            ...prevState,
+            [event.target.name]: [event.target.value],
+        }));
+    };
+
+    const handleOwnedStocksUpdate = (event) => {
+       event.preventDefault();
+       props.updateOwnedStocks(newBuyForm, props.user.uid);
+    }
+
+    const handleCommentChange = (event) => {
         setCommentForm((prevState) => ({
             ...prevState,
             [event.target.name]: [event.target.value],
         }));
     };
 
-    const handleUpdate = (event) => {
+    const handleCommentUpdate = (event) => {
         event.preventDefault();
         props.updateStockComment(newForm, stock._id);
         setCommentForm({
@@ -42,16 +59,16 @@ const Show = (props) => {
         );
     };
 
-    const loadComments = stock.comments.map((c,i) => ( 
+    const loadComments = stock.comments.map((c,i) => (
         <ul className='commentList' key={i}>
             <li className="comments" key={i}>
                 {c}
             </li>
             <hr className="commentRow" />
         </ul>
-    )); 
+    ));
 
-    
+
     const noComments = () => {
        return <p>Be the first to comment on {stock.name}</p>;
     };
@@ -65,11 +82,16 @@ const Show = (props) => {
         <div className="stock">
             {stock ? loadedStocks() : loadingStocks()}
             <div className="commentBox">
-                {loadComments.length > 0 ? loadComments : noComments()} 
+                {loadComments.length > 0 ? loadComments : noComments()}
             </div>
             <section>
-                <form onSubmit={handleUpdate}>
-                    <input type="text" name="comments" value={newForm.comments} placeholder="Add a comment" onChange={handleChange}/>
+                <form onSubmit={handleCommentUpdate}>
+                    <input type="text" name="comments" value={newForm.comments} placeholder="Add a comment" onChange={handleCommentChange}/>
+                    <input type="submit" value="submit"/>
+                </form>
+                <form onSubmit={handleOwnedStocksUpdate}>
+                    <input type="text" name="stockSymbol" value={newBuyForm.stockSymbol} placeholder="enter the ticker symbol to purchase" onChange={handleBuyChange}/>
+                    <input type="text" name="shareNum" value={newBuyForm.shareNum} placeholder="enter the number of shares to purchase" onChange={handleBuyChange}/>
                     <input type="submit" value="submit"/>
                 </form>
             </section>
