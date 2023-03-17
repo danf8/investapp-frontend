@@ -18,7 +18,7 @@ const Show = (props) => {
     const handleBuyChange = (event) => {
         setBuyForm((prevState) => ({
             ...prevState,
-            [event.target.name]: [event.target.value],
+            [event.target.name]: [event.target.value.toUpperCase()],
         }));
     };
 
