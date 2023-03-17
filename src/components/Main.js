@@ -5,10 +5,11 @@ import Show from '../pages/Show';
 import Signin from '../pages/Signin';
 import SignUp from '../pages/Signup';
 import Homepage from '../pages/Homepage';
+import Form from '../pages/Form';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-        const API_URL = "http://localhost:3002/stocks";
+        const API_URL = "http://localhost:5000/stocks";
 
         const getStocks = useCallback(async () => {
             try {
@@ -108,6 +109,7 @@ const Main = (props) => {
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
                     < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
+                    < Route path='/form' element={<Form/>}/>
                 </Routes>
             </main>
         );
