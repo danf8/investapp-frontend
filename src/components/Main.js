@@ -9,7 +9,7 @@ import Form from '../pages/Form';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-        const API_URL = "http://localhost:5000/stocks";
+        const API_URL = "http://localhost:3002/stocks";
 
         const getStocks = useCallback(async () => {
             try {
