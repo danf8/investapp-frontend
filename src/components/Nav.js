@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { login, logout } from '../firebase';
+import { loginWithGoogle, logout } from '../firebase';
+import '../Css/nav.css'
 
 const Nav = (props) => {
   const location = useLocation();
@@ -12,13 +13,21 @@ const Nav = (props) => {
             <Link to="/stocks">
               <div>Stock App</div>
             </Link>
-
+            {(!props.user.photoURL) &&
+            <li>Welcome, {props.user.displayName}</li>
+            }
+            {(props.user.photoURL) &&
+            <>
             <li>Welcome, {props.user.displayName.split(' ', 1)}</li>
-            <li>
+              <li>
               <img src={props.user.photoURL} alt={props.user.displayName} />
             </li>
+            </>
+            }
             <li>
-              <button onClick={logout}>Logout</button>
+              <Link to='/'>
+                <button onClick={logout}>Logout</button>
+              </Link>
             </li>
           </>
         ) : (
@@ -27,15 +36,15 @@ const Nav = (props) => {
               if (location.pathname !== '/login' && location.pathname !== '/signup') {
                 return (
                   <>
-                    <Link to="/login">
-                      <button>Login</button>
+                    <Link to="/signin">
+                      <button>Signin</button>
                     </Link>
                     <Link to="/signup">
                       <button>Sign up</button>
                     </Link>
                     <li>
                       <Link to="/stocks">
-                        <button onClick={login}>Login with Google</button>
+                        <button onClick={loginWithGoogle}>Login with Google</button>
                       </Link>
                     </li>
                   </>

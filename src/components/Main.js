@@ -2,15 +2,14 @@ import { Routes, Route} from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
 import Index from '../pages/Index';
 import Show from '../pages/Show';
-import Login from '../pages/Login';
+import Signin from '../pages/Signin';
 import SignUp from '../pages/Signup';
+import Homepage from '../pages/Homepage';
+import Form from '../pages/Form';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-        const [filteredStocks, setFilteredStocks] = useState(null);
-        const API_URL = "http://localhost:5000/stocks";
-
-
+        const API_URL = "http://localhost:3002/stocks";
 
         const getStocks = useCallback(async () => {
             try {
@@ -24,12 +23,31 @@ const Main = (props) => {
                     });
                     const data = await response.json();
                     setStocks(data);
-                    setFilteredStocks(data);
                 }
             } catch (error) {
                 console.error(error);
             };
-        }, [props.user])
+        }, [props.user]);
+
+        const updateOwnedStocks = async (purchasedStock, id) => {
+          try {
+            if (props.user) {
+            console.log(props.user)
+            const token = await props.user.getIdToken();
+            console.log(token)
+                    await fetch(('http://localhost:3002/users/' + id), {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'Application/json',
+                            'Authorization': 'Bearer ' + token
+                        },
+                        body: JSON.stringify(purchasedStock),
+                    })
+                }
+          } catch (error) {
+            console.log(error);
+          }
+        }
 
         const updateStockComment = async (stock, id) => {
             try {
@@ -50,25 +68,51 @@ const Main = (props) => {
             };
         };
 
+        const updateStockValues = useCallback(async () => {
+            try{
+                if (props.user) {
+                    const token = await props.user.getIdToken();
+                    await fetch(API_URL + '/update-prices',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'Application/json',
+                            'Authorization': 'Bearer ' + token
+                        },
+                    });
+                }
+            } catch (error) {
+                console.log(error);
+            };
+        }, [props.user]);
+
         useEffect(() => {
+                setInterval(() => {
+                const time = new Date();
+                const utcTime = time.getUTCHours();
+                const estTime = (utcTime - 5);
+                if(estTime === 16) {
+                    updateStockValues()
+                }
+            }, 1000* 60 * 60);
             if(props.user){
                 getStocks();
             }else{
                 getStocks(null);
-                setFilteredStocks(null);
             }
-        }, [props.user,getStocks]);
+        }, [props.user,getStocks, updateStockValues ]);
 
         return(
             <main>
                 <Routes>
-                    < Route path='/stocks' element={<Index user={props.user} stocks={filteredStocks} setFilteredStocks={setFilteredStocks}/>}/>
-                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
-                    < Route path='/login' element={<Login />}/>
+                    < Route path='/' element={<Homepage user={props.user}/>} />
+                    < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
+                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
+                    < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
+                    < Route path='/form' element={<Form/>}/>
                 </Routes>
             </main>
         );
     };
 
-                export default Main;
+export default Main;

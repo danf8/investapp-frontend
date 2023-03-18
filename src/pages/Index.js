@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import '../Css/index.css'
 
 const Index = (props) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -58,7 +59,8 @@ const Index = (props) => {
     return (
         <>
           {props.user ? (
-            <div class="search-container">
+          <>
+            <div className="search-container">
               <input
                 type="text"
                 placeholder="Search Stocks"
@@ -67,10 +69,11 @@ const Index = (props) => {
               />
               <button onClick={handleSearchClick}>Search</button>
             </div>
+            <section>{props.stocks ? loadStocks() : loadingStocks()}</section>
+          </>
           ) : (
             <h2>Please Login to access stock info</h2>
-          )}
-          <section>{props.stocks ? loadStocks() : loadingStocks()}</section>
+            )}
         </>
       );
 }
