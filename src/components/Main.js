@@ -86,34 +86,34 @@ const Main = (props) => {
         };
     }, [props.user]);
 
-    useEffect(() => {
-            setInterval(() => {
-            const time = new Date();
-            const utcTime = time.getUTCHours();
-            const estTime = (utcTime - 5);
-            if(estTime === 16) {
-                updateStockValues()
+        useEffect(() => {
+                setInterval(() => {
+                const time = new Date();
+                const utcTime = time.getUTCHours();
+                const estTime = (utcTime - 5);
+                if(estTime === 16) {
+                    updateStockValues()
+                }
+            }, 1000* 60 * 60);
+            if(props.user){
+                getStocks();
+            }else{
+                getStocks(null);
             }
-        }, 1000* 60 * 60);
-        if(props.user){
-            getStocks();
-        }else{
-            getStocks(null);
-        }
-    }, [props.user,getStocks, updateStockValues ]);
+        }, [props.user,getStocks, updateStockValues ]);
 
-    return(
-        <main>
-            <Routes>
-                < Route path='/' element={<Homepage user={props.user}/>} />
-                < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
-                < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
-                < Route path='/signin' element={<Signin user={props.user}/>}/>
-                < Route path='/signup' element={<SignUp/>}/>
-                < Route path='/form' element={<Form/>}/>
-            </Routes>
-        </main>
-    );
-};
+        return(
+            <main>
+                <Routes>
+                    < Route path='/' element={<Homepage user={props.user}/>} />
+                    < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
+                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
+                    < Route path='/signin' element={<Signin user={props.user}/>}/>
+                    < Route path='/signup' element={<SignUp/>}/>
+                    < Route path='/form' element={<Form/>}/>
+                </Routes>
+            </main>
+        );
+    };
 
 export default Main;
