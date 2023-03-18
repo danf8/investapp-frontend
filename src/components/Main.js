@@ -110,7 +110,7 @@ const Main = (props) => {
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
                     < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
-                    < Route path='/form' element={<Form/>}/>
+                    < Route path='/form' element={<Form user={props.user}/>}/>
                 </Routes>
             </main>
         );
