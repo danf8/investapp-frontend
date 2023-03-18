@@ -37,7 +37,7 @@ const Nav = (props) => {
                 return (
                   <>
                     <Link to="/signin">
-                      <button>Signin</button>
+                      <button>Sign in</button>
                     </Link>
                     <Link to="/signup">
                       <button>Sign up</button>
