@@ -38,7 +38,7 @@ const Form = (props) => {
             </label><br/><br/>
             <button type="submit">Submit</button>
         </form>
-    )
-}
+    );
+};
 
 export default Form;

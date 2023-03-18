@@ -47,6 +47,6 @@ function SignIn(props) {
       </form>
     </>
   );
-}
+};
 
 export default SignIn;
