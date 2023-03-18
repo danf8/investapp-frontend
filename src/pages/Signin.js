@@ -39,7 +39,7 @@ function SignIn(props) {
         </label><br/><br/>
         <div id='btnLi'>
           <input id='signinBtn' type='submit' value='signin'/>
-          <Link to='/stocks'>
+          <Link to='/form'>
             <button onClick={loginWithGoogle}>Login with Google</button>
           </Link>
           <Link to='/signup'>Sign Up</Link>

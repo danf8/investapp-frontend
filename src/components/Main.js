@@ -9,7 +9,7 @@ import Form from '../pages/Form';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
-        const API_URL = "http://localhost:3002/stocks";
+        const API_URL = "http://localhost:5000/stocks";
 
         const getStocks = useCallback(async () => {
             try {
@@ -35,7 +35,7 @@ const Main = (props) => {
             console.log(props.user)
             const token = await props.user.getIdToken();
             console.log(token)
-                    await fetch(('http://localhost:3002/users/' + id), {
+                    await fetch(('http://localhost:5000/users/' + id), {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'Application/json',
@@ -45,7 +45,7 @@ const Main = (props) => {
                     })
                 }
           } catch (error) {
-            console.log(error);
+            console.error(error);
           }
         }
 
@@ -109,7 +109,7 @@ const Main = (props) => {
                     < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
                     < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
-                    < Route path='/form' element={<Form/>}/>
+                    < Route path='/form' element={<Form user={props.user}/>}/>
                 </Routes>
             </main>
         );
