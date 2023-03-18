@@ -26,29 +26,28 @@ const Homepage = (props) => {
     // const API_INDEX_URL = "http://localhost:5000/";
     const API_INDEX_URL = "https://investing-buddy.herokuapp.com/";
 
-    const getStockIndex = async () => {
-        try {
-                const response = await fetch(API_INDEX_URL, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'Application/json',
-                    }
-                });
-                const data = await response.json();
-                    //reverse stockindexstate to display information in correct over on chart
-                data[0].historical = data[0].historical.reverse()
-                setStockIndex(data);    
-        } catch (error) {
-            console.error(error);
-        };
+  const getStockIndex = async () => {
+      try {
+        const response = await fetch(API_INDEX_URL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'Application/json',
+            }
+        });
+        const data = await response.json();
+            //reverse stockindexstate to display information in correct over on chart
+        data[0].historical = data[0].historical.reverse()
+        setStockIndex(data);    
+      } catch (error) {
+          console.error(error);
+      };
     };
 
-//loads chart 
   const loadChart = () => {
-    const stockClose = stockIndexState[0].historical.map((stock) => stock.close)
-    const labels = stockIndexState[0].historical.map((stock) => stock.date) 
+    const stockClose = stockIndexState[0].historical.map((stock) => stock.close);
+    const labels = stockIndexState[0].historical.map((stock) => stock.date);
 
-  const options = {
+    const options = {
       responsive: true,
       plugins: {
         legend: {
@@ -61,26 +60,26 @@ const Homepage = (props) => {
       },
     };
     //set chart data
-  const data = {
-      labels: labels,
-      datasets: [
-        {
-          label: 'SPY Historical Prices',
-          data: stockClose,
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-      ],
-    };
-          return <Line options={options} data={data} />;
+    const data = {
+        labels: labels,
+        datasets: [
+          {
+            label: 'SPY Historical Prices',
+            data: stockClose,
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          },
+        ],
+      };
+        return <Line options={options} data={data} />;
       };
 
-    const loadingChart = () => {
-        return <h1>Loading chart.....</h1>;
-    };
+  const loadingChart = () => {
+    return <h1>Loading chart.....</h1>;
+  };
 
-    useEffect(() => {
-      getStockIndex();
+  useEffect(() => {
+    getStockIndex();
   },[]);
 
     return(
