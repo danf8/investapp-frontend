@@ -103,18 +103,20 @@ const Main = (props) => {
         }
     }, [props.user,getStocks, updateStockValues ]);
 
-    return(
-        <main>
-            <Routes>
-                < Route path='/' element={<Homepage user={props.user}/>} />
-                < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
-                < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
-                < Route path='/signin' element={<Signin user={props.user}/>}/>
-                < Route path='/signup' element={<SignUp/>}/>
-                < Route path='/form' element={<Form/>}/>
-            </Routes>
-        </main>
-    );
-};
+
+        return(
+            <main>
+                <Routes>
+                    < Route path='/' element={<Homepage user={props.user}/>} />
+                    < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
+                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
+                    < Route path='/signin' element={<Signin user={props.user}/>}/>
+                    < Route path='/signup' element={<SignUp/>}/>
+                    < Route path='/form' element={<Form user={props.user}/>}/>
+                </Routes>
+            </main>
+        );
+    };
+
 
 export default Main;
