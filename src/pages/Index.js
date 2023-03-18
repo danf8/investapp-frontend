@@ -29,6 +29,7 @@ const Index = (props) => {
       }
     };
 
+
   const loadStocks = () => {
     if (searchTerm) {
       return filteredStocks && filteredStocks.map((stock,index) => (
@@ -47,6 +48,7 @@ const Index = (props) => {
               </Link>
               <p>${stock.price}</p>
           </div>
+
         ));
       }
     };
