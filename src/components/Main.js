@@ -8,9 +8,16 @@ import Homepage from '../pages/Homepage';
 import Form from '../pages/Form';
 
 const Main = (props) => {
+<<<<<<< HEAD
         const [stocks, setStocks] = useState(null);
         // const API_URL = "http://localhost:5000/stocks";
         const API_URL = "https://investing-buddy.herokuapp.com/stocks";
+=======
+
+    const [stocks, setStocks] = useState(null);
+    const API_URL = "http://localhost:5000/stocks";
+
+>>>>>>> 24fc3bf (prevents duplicate users)
 
     const getStocks = useCallback(async () => {
         try {
@@ -36,7 +43,7 @@ const Main = (props) => {
         console.log(props.user)
         const token = await props.user.getIdToken();
         console.log(token)
-                await fetch(('http://localhost:3002/users/' + id), {
+                await fetch(('http://localhost:5000/users/' + id), {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'Application/json',
