@@ -18,7 +18,6 @@ const Main = (props) => {
     const [userIndexState, setUserIndexState] = useState(null);
     const API_URL = "http://localhost:3002/stocks";
 
-
     const getUserStocks = useCallback(async () => {
         try {
             if (props.user) {
@@ -30,15 +29,12 @@ const Main = (props) => {
                     }
                 });
                 const data = await response.json();
-                console.log('----- inside', data)
                 setUserIndexState(data);
-                // console.log(userIndexState)
             }
         } catch (error) {
             console.error(error);
         };
     }, [props.user]);
-    console.log('-----out', userIndexState)
 
 >>>>>>> 24fc3bf (prevents duplicate users)
 
