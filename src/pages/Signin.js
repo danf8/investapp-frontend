@@ -13,7 +13,7 @@ function SignIn(props) {
       await signIn(email, password);
       console.log("User signed in successfully");
       // Redirect the user here
-      window.location.href = '/stocks';
+      window.location.href = '/form';
     } catch (error) {
       console.error(error);
     }

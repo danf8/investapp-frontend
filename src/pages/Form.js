@@ -16,7 +16,7 @@ const Form = (props) => {
         event.preventDefault();
         if(newUser){
                 //redirect new user here
-                window.location.href = '';
+                window.location.href = '/users';
                 }else if(notNewUser){
                 // Redirect registered user here
                 window.location.href = '/stocks';

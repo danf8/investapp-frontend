@@ -5,6 +5,7 @@ import Show from '../pages/Show';
 import Signin from '../pages/Signin';
 import SignUp from '../pages/Signup';
 import Homepage from '../pages/Homepage';
+import Form from '../pages/Form';
 
 const Main = (props) => {
         const [stocks, setStocks] = useState(null);
@@ -29,6 +30,26 @@ const Main = (props) => {
             };
         }, [props.user]);
 
+        const updateOwnedStocks = async (purchasedStock, id) => {
+          try {
+            if (props.user) {
+            console.log(props.user)
+            const token = await props.user.getIdToken();
+            console.log(token)
+                    await fetch(('http://localhost:3002/users/' + id), {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'Application/json',
+                            'Authorization': 'Bearer ' + token
+                        },
+                        body: JSON.stringify(purchasedStock),
+                    })
+                }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+
         const updateStockComment = async (stock, id) => {
             try {
                 if (props.user) {
@@ -48,7 +69,7 @@ const Main = (props) => {
             };
         };
 
-        const updateStockValues =useCallback( async () => {
+        const updateStockValues = useCallback(async () => {
             try{
                 if (props.user) {
                     const token = await props.user.getIdToken();
@@ -86,9 +107,10 @@ const Main = (props) => {
                 <Routes>
                     < Route path='/' element={<Homepage user={props.user}/>} />
                     < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
-                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment}/>} />
+                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
                     < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
+                    < Route path='/form' element={<Form/>}/>
                 </Routes>
             </main>
         );

@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { loginWithGoogle, logout } from '../firebase';
+import '../Css/nav.css'
 
 const Nav = (props) => {
   const location = useLocation();
@@ -15,7 +16,6 @@ const Nav = (props) => {
             {(!props.user.photoURL) &&
             <li>Welcome, {props.user.displayName}</li>
             }
-            {console.log(props.user)}
             {(props.user.photoURL) &&
             <>
             <li>Welcome, {props.user.displayName.split(' ', 1)}</li>
