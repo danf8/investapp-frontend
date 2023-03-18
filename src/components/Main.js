@@ -36,7 +36,7 @@ const Main = (props) => {
             console.log(props.user)
             const token = await props.user.getIdToken();
             console.log(token)
-                    await fetch(('http://localhost:3002/users/' + id), {
+                    await fetch(('http://localhost:5000/users/' + id), {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'Application/json',
