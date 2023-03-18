@@ -36,7 +36,7 @@ const Form = (props) => {
             'Content-Type': 'Application/json',
             'Authorization': 'Bearer ' + token
           },
-          body: JSON.stringify({ownedStocks, currentMoney}) // empty object for now
+          body: JSON.stringify({ownedStocks, currentMoney, uid}) // empty object for now
         })
         .catch((error) => {
           console.error(error);
