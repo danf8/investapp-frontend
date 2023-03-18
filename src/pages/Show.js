@@ -68,11 +68,9 @@ const Show = (props) => {
         </ul>
     ));
 
-
     const noComments = () => {
        return <p>Be the first to comment on {stock.name}</p>;
     };
-
 
     const loadingStocks = () => {
         return <h1>Loading Stocks...</h1>;

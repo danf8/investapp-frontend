@@ -47,20 +47,21 @@ const Form = (props) => {
     }
   }
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <h1>Is this your first time logging onto this website?</h1>
-        This is my first time logging onto this website: 
-        <input type="checkbox" name="newUser" checked={newUser} onChange={handleNewUserChange}></input>
-      </label><br/><br/>
-      <label>
-        This is NOT my first time logging onto this website:
-        <input type="checkbox" name="notNewUser" checked={notNewUser} onChange={handleNotNewUserChange}></input>   
-      </label><br/><br/>
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
+
+    return(
+        <form onSubmit={handleSubmit}>
+            <label>
+             <h1>Is this your first time logging onto this website?</h1>
+             This is my first time logging onto this website: 
+             <input type="checkbox" name="newUser" checked={newUser} onChange={handleNewUserChange}></input>
+            </label><br/><br/>
+            <label>
+             This is NOT my first time logging onto this website:
+             <input type="checkbox" name="notNewUser" checked={notNewUser} onChange={handleNotNewUserChange}></input>   
+            </label><br/><br/>
+            <button type="submit">Submit</button>
+        </form>
+    );
+};
 
 export default Form;
