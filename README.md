@@ -19,11 +19,16 @@
 
 ## Application Screenshots
 
+<img src ='./screenshots/homepage.png' width= '400' height= '300'>
+<img src ='./screenshots/login-page.png' width= '400' height= '300'>
+<img src ='./screenshots/Index-page.png' width= '400' height= '300'>
+<img src ='./screenshots/Show-page.png' width= '400' height= '300'>
+
 ## Getting Started
 
 * Create an account or login to access the site.
 
-Click here to visit site.....
+Click here to visit site.....[LINK](https://thunderous-cactus-ea99a9.netlify.app/)
 
 # Future Enhancements 
  * Display updated stock information in real time
