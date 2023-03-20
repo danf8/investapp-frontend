@@ -4,6 +4,7 @@ section {
 
 input[type='submit'] {
     padding: 10px;
+    margin-left: 10px;
     font-size: 15px;
     border: solid;
     border-radius: 6px;
@@ -14,7 +15,7 @@ input[type='submit'] {
     cursor: pointer;
 }
 
-input[type="text"] {
+input[type="text"],input[type="number"]{
     padding: 10px;
     font-size: 15px;
     border: solid;
@@ -25,6 +26,11 @@ input[type="text"] {
     margin: 3px;
 }
 
+#purchaseBox input[type="submit"] {
+    width: 280px;
+}
+
+
 hr {
     width: 90%;
 }
@@ -32,10 +38,12 @@ hr {
 .commentBox {
     display: flex;
     flex-direction: column;
+    align-items: center;
     border: solid;
     border-radius: 6px;
     border-color: #d1d3db;
     justify-content: center;
+    width: 380px;
 }
 
 .commentList{
@@ -46,8 +54,13 @@ hr {
     margin-top: 5px;
 }
 
-.comments {
-    width: 450px;
+#addComment {
+    width: 500px;
+    margin-left: 110px;
+}
+
+#addComment input[type='submit']{
+    margin-left: 37px;
 }
 
 .price {
@@ -80,4 +93,18 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#purchaseBox{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: solid;
+    border-radius: 6px;
+    border-color: #d1d3db;
+    width: 360px;
+    height: 150px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 20px;
 }

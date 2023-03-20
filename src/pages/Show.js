@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import { useState} from 'react';
 import '../Css/show.css'
 const Show = (props) => {
@@ -46,13 +46,13 @@ const Show = (props) => {
         return(
             <>
                 <h1>{stock.name} ({stock.symbol})</h1>
-                <p className="price">Current Price: ${stock.price} ( {percentChange}% )</p>
+                <p className='price'>Current Price: ${stock.price} ( {percentChange}% )</p>
                 <hr />
                 <br />
-                <div className="info">
-                    <p className="mkt">Market Cap: {stock.marketCap.toLocaleString()}</p>
-                    <p className="eps">EPS: {stock.eps}</p>
-                    <p className="pe">PE: {stock.pe === null ? 'Not Available' : stock.pe}</p>
+                <div className='info'>
+                    <p className='mkt'>Market Cap: {stock.marketCap.toLocaleString()}</p>
+                    <p className='eps'>EPS: {stock.eps}</p>
+                    <p className='pe'>PE: {stock.pe === null ? 'Not Available' : stock.pe}</p>
                     <br />
                 </div>
             </>
@@ -61,10 +61,10 @@ const Show = (props) => {
 
     const loadComments = stock.comments.map((c,i) => (
         <ul className='commentList' key={i}>
-            <li className="comments" key={i}>
+            <li className='comments' key={i}>
                 {c}
             </li>
-            <hr className="commentRow" />
+            <hr className='commentRow' />
         </ul>
     ));
 
@@ -77,20 +77,20 @@ const Show = (props) => {
     };
 
     return(
-        <div className="stock">
+        <div className='stock'>
             {stock ? loadedStocks() : loadingStocks()}
-            <div className="commentBox">
+            <div className='commentBox'>
                 {loadComments.length > 0 ? loadComments : noComments()}
             </div>
             <section>
-                <form onSubmit={handleCommentUpdate}>
-                    <input type="text" name="comments" value={newForm.comments} placeholder="Add a comment" onChange={handleCommentChange}/>
-                    <input type="submit" value="submit"/>
-                </form>
-                <form onSubmit={handleOwnedStocksUpdate}>
-                    <input type="text" name="stockSymbol" value={newBuyForm.stockSymbol} placeholder="enter the ticker symbol to purchase" onChange={handleBuyChange}/>
-                    <input type="number" name="shareNum" value={newBuyForm.shareNum} placeholder="enter the number of shares to purchase" onChange={handleBuyChange}/>
-                    <input type="submit" value="submit"/>
+                <form id='addComment' onSubmit={handleCommentUpdate}>
+                    <input type='text' name='comments' value={newForm.comments} placeholder='Add a comment' onChange={handleCommentChange}/>
+                    <input type='submit' value='submit'/>
+                </form><br/><br/><br/><br/>
+                <form id='purchaseBox' onSubmit={handleOwnedStocksUpdate}>
+                    <input type='text' name='stockSymbol' value={newBuyForm.stockSymbol} placeholder='Enter the ticker symbol to purchase' onChange={handleBuyChange}/>
+                    <input type='number' name='shareNum' value={newBuyForm.shareNum} placeholder='Enter the number of shares to purchase' onChange={handleBuyChange}/>
+                    <input type='submit' value='Buy it now'/>
                 </form>
             </section>
         </div>

@@ -8,13 +8,13 @@ import Homepage from '../pages/Homepage';
 import Form from '../pages/Form';
 import UserStockData from '../pages/UserStockData'
 const Main = (props) => {
-
     const [stocks, setStocks] = useState(null);
 
     const [userStocks, setUserStocks] = useState(null);
 
     const API_URL = "http://localhost:3002/stocks";
 
+    // console.log("New state: " + JSON.stringify(userIndexState))
 
     const getStocks = useCallback(async () => {
         try {
@@ -39,8 +39,8 @@ const Main = (props) => {
         if (props.user) {
         console.log(props.user)
         const token = await props.user.getIdToken();
-        console.log(token)
-                await fetch(('http://localhost:3002/users/' + id), {
+        // console.log(token)
+                await fetch(('http://localhost:5000/users/' + id), {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'Application/json',
@@ -112,16 +112,16 @@ const Main = (props) => {
         };
     }, [props.user]);
 
-    useEffect(() => {
-            setInterval(() => {
-            const time = new Date();
-            const utcTime = time.getUTCHours();
-            const estTime = (utcTime - 5);
-            if(estTime === 16) {
-                updateStockValues()
-            }
-        }, 1000* 60 * 60);
-        if(props.user){
+        useEffect(() => {
+                setInterval(() => {
+                const time = new Date();
+                const utcTime = time.getUTCHours();
+                const estTime = (utcTime - 5);
+                if(estTime === 16) {
+                    updateStockValues()
+                }
+            }, 1000* 60 * 60);
+        if(props.user) {
             getStocks();
             getUserStocks();
         }else{
@@ -144,6 +144,5 @@ const Main = (props) => {
             </main>
         );
     };
-
 
 export default Main;
