@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import { loginWithGoogle, signUp, profileUpdate} from '../firebase';
-=======
-import { signUp, profileUpdate} from '../firebase';
->>>>>>> main
 import '../Css/signup.css'
 
 function SignUp(props){
