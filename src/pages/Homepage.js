@@ -10,6 +10,7 @@ import {
     Legend,
   } from 'chart.js';
   import { Line } from 'react-chartjs-2';
+  import '../Css/Homepage.css';
 
   ChartJS.register(
     CategoryScale,
@@ -84,8 +85,8 @@ const Homepage = (props) => {
   },[]);
 
     return(
-        <div>
-            <h1>Please login to start your journey</h1>
+        <div id='homepage'>
+            <h1>Start learning about stocks with just one click - Log in now!</h1><br/><br/>
             {stockIndexState ?  loadChart(): loadingChart()}
         </div>
     );
