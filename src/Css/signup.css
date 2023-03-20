@@ -2,8 +2,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 15px;
+    border: solid;
+    border-radius: 6px;
+    border-color: #d1d3db;
+    width: 400px;
+    height: 500px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 50px;
 }
-input[type="text"],[type='email'],[type='password'] {
+
+input[type="text"],input[type='email'],input[type='password'] {
     padding: 10px;
     font-size: 15px;
     border: solid;
@@ -16,9 +28,30 @@ input[type="text"],[type='email'],[type='password'] {
 
 small{
     margin-top: 10px;
+    margin-left: 5px;
     opacity: .5;
 }
 
-#SignupBtn {
+#sSU{
     margin-left: 50px;
+}
+
+#SignupBtn {
+    margin-left: 3px;
+    width: 280px;
+}
+
+#siwe{
+    padding-left: 20px;
+}
+
+#GoogleSU{
+    margin-left: 10px;
+    border-radius: 50%;
+    color:white;
+    background-color: rgb(105, 98, 98);
+}
+
+#GoogleSU:hover{
+    background-color: rgb(163, 6, 6);
 }
