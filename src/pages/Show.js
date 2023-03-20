@@ -25,6 +25,8 @@ const Show = (props) => {
     const handleOwnedStocksUpdate = (event) => {
        event.preventDefault();
        props.updateOwnedStocks(newBuyForm, props.user.uid);
+       props.getUserStocks();
+       alert('stock purchased!')
     }
 
     const handleCommentChange = (event) => {

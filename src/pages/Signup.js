@@ -19,7 +19,7 @@ function SignUp(props){
         console.error(error);
       }
     };
-    
+
     //on change
     const handleNameChange = (event) => {
       setDisplayName(event.target.value);

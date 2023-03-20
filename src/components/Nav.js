@@ -10,6 +10,9 @@ const Nav = (props) => {
       <ul>
         {props.user ? (
           <>
+          <Link to={"/userStocks/" + props.user.uid}>
+              <div>My Investments</div>
+            </Link>
             <Link id='home' to="/stocks">
               <button >Home</button>
             </Link>
@@ -32,7 +35,7 @@ const Nav = (props) => {
           </>
         ) : (
           <>
-            {(() => { 
+            {(() => {
               if (location.pathname !== '/signin' && location.pathname !== '/signup') {
                 return (
                   <>
