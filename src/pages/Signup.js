@@ -14,8 +14,7 @@ function SignUp(props){
       try {
         await signUp(email, password);
         await profileUpdate(displayName);
-        console.log("display name:", displayName);
-        // console.log("User signed up successfully");
+        window.location.href = '/form';
       } catch (error) {
         console.error(error);
       }
@@ -23,7 +22,6 @@ function SignUp(props){
     
     //on change
     const handleNameChange = (event) => {
-      console.log(event.target.value); 
       setDisplayName(event.target.value);
     };
 
@@ -53,7 +51,7 @@ function SignUp(props){
         </form>
         <small>Password must be longer than 6</small>
       </div>
-    )
-};
+    );
+  };
 
 export default SignUp;

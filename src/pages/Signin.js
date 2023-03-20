@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { loginWithGoogle, signIn } from '../firebase';
 import { useState } from 'react';
+import '../Css/signin.css'
 
 function SignIn(props) {
   const [email, setEmail] = useState("");
@@ -28,8 +29,8 @@ function SignIn(props) {
   };
 
   return (
-    <>
-      <h1>Sign In with Email Page</h1>
+    <div className='signin-form'>
+      <h1>Sign In with Email</h1>
       <form onSubmit={handleSignIn}>
         <label>
           Email: <input type="email" name="email" onChange={handleEmailChange} required/>
@@ -45,8 +46,8 @@ function SignIn(props) {
           <Link to='/signup'>Sign Up</Link>
         </div>
       </form>
-    </>
+    </div>
   );
-}
+};
 
 export default SignIn;

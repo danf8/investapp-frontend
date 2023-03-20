@@ -11,79 +11,97 @@ const Main = (props) => {
         const [stocks, setStocks] = useState(null);
         const API_URL = "http://localhost:5000/stocks";
 
-        const getStocks = useCallback(async () => {
-            try {
-                if (props.user) {
-                    const token = await props.user.getIdToken();
-                    const response = await fetch(API_URL, {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': 'Bearer ' + token
-                        }
-                    });
-                    const data = await response.json();
-                    setStocks(data);
-                }
-            } catch (error) {
-                console.error(error);
-            };
-        }, [props.user]);
-
-        const updateOwnedStocks = async (purchasedStock, id) => {
-          try {
+    const getUserStocks = useCallback(async () => {
+        try {
             if (props.user) {
-            console.log(props.user)
-            const token = await props.user.getIdToken();
-            console.log(token)
-                    await fetch(('http://localhost:5000/users/' + id), {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'Application/json',
-                            'Authorization': 'Bearer ' + token
-                        },
-                        body: JSON.stringify(purchasedStock),
-                    })
-                }
-          } catch (error) {
+                const token = await props.user.getIdToken();
+                const response = await fetch(API_URL +'/user', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                });
+                const data = await response.json();
+                setUserIndexState(data);
+            }
+        } catch (error) {
             console.error(error);
-          }
-        }
-
-        const updateStockComment = async (stock, id) => {
-            try {
-                if (props.user) {
-                    const token = await props.user.getIdToken();
-                    await fetch(API_URL + '/' + id, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'Application/json',
-                            'Authorization': 'Bearer ' + token
-                        },
-                        body: JSON.stringify(stock),
-                    });
-                    getStocks();
-                };
-            } catch (error) {
-                console.error(error);
-            };
         };
+    }, [props.user]);
 
-        const updateStockValues = useCallback(async () => {
-            try{
-                if (props.user) {
-                    const token = await props.user.getIdToken();
-                    await fetch(API_URL + '/update-prices',{
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'Application/json',
-                            'Authorization': 'Bearer ' + token
-                        },
-                    });
-                }
-            } catch (error) {
-                console.log(error);
+    const getStocks = useCallback(async () => {
+        try {
+            if (props.user) {
+                const token = await props.user.getIdToken();
+                const response = await fetch(API_URL, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                });
+                const data = await response.json();
+                setStocks(data);
+            }
+        } catch (error) {
+            console.error(error);
+        };
+    }, [props.user]);
+
+    const updateOwnedStocks = async (purchasedStock, id) => {
+        try {
+        if (props.user) {
+        console.log(props.user)
+        const token = await props.user.getIdToken();
+        console.log(token)
+                await fetch(('http://localhost:3002/users/' + id), {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'Application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify(purchasedStock),
+                })
+            }
+        } catch (error) {
+        console.log(error);
+        }
+    }
+
+    const updateStockComment = async (stock, id) => {
+        try {
+            if (props.user) {
+                const token = await props.user.getIdToken();
+                await fetch(API_URL + '/' + id, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'Application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify(stock),
+                });
+                getStocks();
             };
-        }, [props.user]);
+        } catch (error) {
+            console.error(error);
+        };
+    };
+
+    const updateStockValues = useCallback(async () => {
+        try{
+            if (props.user) {
+                const token = await props.user.getIdToken();
+                await fetch(API_URL + '/update-prices',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'Application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        };
+    }, [props.user]);
 
         useEffect(() => {
                 setInterval(() => {
@@ -96,10 +114,12 @@ const Main = (props) => {
             }, 1000* 60 * 60);
             if(props.user){
                 getStocks();
+                getUserStocks()
             }else{
                 getStocks(null);
+                getUserStocks(null)
             }
-        }, [props.user,getStocks, updateStockValues ]);
+        }, [props.user,getStocks, updateStockValues, getUserStocks ]);
 
         return(
             <main>

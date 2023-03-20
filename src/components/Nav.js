@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { loginWithGoogle, logout } from '../firebase';
-import '../Css/nav.css'
+import '../Css/nav.css';
 
 const Nav = (props) => {
   const location = useLocation();
@@ -33,11 +33,11 @@ const Nav = (props) => {
         ) : (
           <>
             {(() => {
-              if (location.pathname !== '/login' && location.pathname !== '/signup') {
+              if (location.pathname !== '/login' && location.pathname !== '/logout') {
                 return (
                   <>
                     <Link to="/signin">
-                      <button>Signin</button>
+                      <button>Sign in</button>
                     </Link>
                     <Link to="/signup">
                       <button>Sign up</button>
@@ -53,7 +53,6 @@ const Nav = (props) => {
             })()}
           </>
         )}
-
       </ul>
     </nav>
   );
