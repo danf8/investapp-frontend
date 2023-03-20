@@ -9,11 +9,6 @@ import Form from '../pages/Form';
 // import Dashboard from '../pages/Dashboard';
 
 const Main = (props) => {
-<<<<<<< HEAD
-        const [stocks, setStocks] = useState(null);
-        // const API_URL = "http://localhost:5000/stocks";
-        const API_URL = "https://investing-buddy.herokuapp.com/stocks";
-=======
 
     const [stocks, setStocks] = useState(null);
     const [userIndexState, setUserIndexState] = useState(null);
@@ -40,7 +35,6 @@ const Main = (props) => {
     }, [props.user]);
     // console.log("New state: " + JSON.stringify(userIndexState))
 
->>>>>>> 24fc3bf (prevents duplicate users)
 
     const getStocks = useCallback(async () => {
         try {
