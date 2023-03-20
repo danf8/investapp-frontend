@@ -1,16 +1,18 @@
-.nav {
-    font-size: 20px;
-    display: flex;
-    justify-content: flex-start; 
-    border-bottom: 1px solid rgb(212, 203, 203); 
+/* .nav {
+    
   }
-  
+   */
+
 .nav ul {
     display: flex;
     list-style: none;
     margin-left: auto;
     margin-right: 1px;
     justify-content: space-around;
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-start; 
+    border-bottom: 1px solid rgb(212, 203, 203); 
 }
 
 .nav li{
@@ -34,4 +36,12 @@
     padding: 0.5rem 1rem;
     border-color: #4759bc;
     margin-top: -5px;
+}
+
+#home {
+    margin-right: auto;
+  }
+
+#welcome{
+    margin-top: 5px;
 }

@@ -30,7 +30,7 @@ const Form = (props) => {
     try {
       if (props.user) {
         const token = await props.user.getIdToken();
-        await fetch('http://localhost:3002/users', {
+        await fetch('http://localhost:5000/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'Application/json',
