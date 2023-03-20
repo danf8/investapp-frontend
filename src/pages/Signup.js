@@ -14,11 +14,12 @@ function SignUp(props){
       try {
         await signUp(email, password);
         await profileUpdate(displayName);
+        window.location.href = '/form';
       } catch (error) {
         console.error(error);
       }
     };
-    
+
     //on change
     const handleNameChange = (event) => {
       setDisplayName(event.target.value);

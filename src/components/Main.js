@@ -6,10 +6,13 @@ import Signin from '../pages/Signin';
 import SignUp from '../pages/Signup';
 import Homepage from '../pages/Homepage';
 import Form from '../pages/Form';
-
+import UserStockData from '../pages/UserStockData'
 const Main = (props) => {
 
     const [stocks, setStocks] = useState(null);
+
+    const [userStocks, setUserStocks] = useState(null);
+
     const API_URL = "http://localhost:3002/stocks";
 
 
@@ -50,6 +53,28 @@ const Main = (props) => {
         console.log(error);
         }
     }
+
+    const getUserStocks = async () => {
+        try {
+        if (props.user) {
+          const token = await props.user.getIdToken();
+          console.log(token)
+               const response = await fetch(('http://localhost:3002/userStocks/' + props.user.uid), {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'Application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                });
+                const data = await response.json();
+                setUserStocks(data);
+            }
+        } catch (error) {
+        console.log(error);
+        }
+    }
+
+
 
     const updateStockComment = async (stock, id) => {
         try {
@@ -98,10 +123,11 @@ const Main = (props) => {
         }, 1000* 60 * 60);
         if(props.user){
             getStocks();
+            getUserStocks();
         }else{
             getStocks(null);
         }
-    }, [props.user,getStocks, updateStockValues ]);
+    }, [props.user,getStocks, updateStockValues]);
 
 
         return(
@@ -113,6 +139,7 @@ const Main = (props) => {
                     < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
                     < Route path='/form' element={<Form user={props.user}/>}/>
+                    < Route path={'/userStocks/:id'}element={<UserStockData user={props.user} userStocks={userStocks}/>}/>
                 </Routes>
             </main>
         );
