@@ -6,19 +6,19 @@ const Nav = (props) => {
   const location = useLocation();
 
   return (
-    <nav className="nav">
+    <nav className='nav'>
       <ul>
         {props.user ? (
           <>
-            <Link to="/stocks">
-              <div>Stock App</div>
+            <Link id='home' to="/stocks">
+              <button >Home</button>
             </Link>
             {(!props.user.photoURL) &&
-            <li>Welcome, {props.user.displayName}</li>
+            <li id='welcome'>Welcome, {props.user.displayName}</li>
             }
             {(props.user.photoURL) &&
             <>
-            <li>Welcome, {props.user.displayName.split(' ', 1)}</li>
+            <li id='welcome'>Welcome, {props.user.displayName.split(' ', 1)}</li>
               <li>
               <img src={props.user.photoURL} alt={props.user.displayName} />
             </li>
@@ -32,21 +32,21 @@ const Nav = (props) => {
           </>
         ) : (
           <>
-            {(() => {
-              if (location.pathname !== '/login' && location.pathname !== '/logout') {
+            {(() => { 
+              if (location.pathname !== '/signin' && location.pathname !== '/signup') {
                 return (
                   <>
-                    <Link to="/signin">
+                    <ul>
+                    <Link to='/signin'>
                       <button>Sign in</button>
                     </Link>
-                    <Link to="/signup">
+                    <Link to='/signup'>
                       <button>Sign up</button>
                     </Link>
-                    <li>
-                      <Link to="/stocks">
-                        <button onClick={loginWithGoogle}>Login with Google</button>
-                      </Link>
-                    </li>
+                    <Link to='/stocks'>
+                      <button onClick={loginWithGoogle}>Login with Google</button>
+                    </Link>
+                      </ul>
                   </>
                 );
               }
