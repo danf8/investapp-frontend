@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 const UserStockData = (props) => {
   console.log(props.userStocks)
   let totalInvestmentValues = 0;
+  if(props.userStocks.ownedStocks.length > 0) {
   return (
     <div>
     <h1>Current Funds in Wallet: {props.userStocks.currentMoney}</h1>
@@ -22,6 +23,13 @@ const UserStockData = (props) => {
     <h3>Total Value of Investments: {totalInvestmentValues}</h3>
     </div>
   )
+} else {
+  return (
+    <div>
+      <h1>Current Funds in Wallet: {props.userStocks.currentMoney}</h1>
+    </div>
+  )
+}
 }
 
 export default UserStockData;

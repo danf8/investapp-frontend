@@ -9,7 +9,6 @@ import Form from '../pages/Form';
 import UserStockData from '../pages/UserStockData'
 const Main = (props) => {
     const [stocks, setStocks] = useState(null);
-
     const [userStocks, setUserStocks] = useState(null);
 
     const API_URL = "http://localhost:3002/stocks";
@@ -40,7 +39,7 @@ const Main = (props) => {
         console.log(props.user)
         const token = await props.user.getIdToken();
         // console.log(token)
-                await fetch(('http://localhost:5000/users/' + id), {
+                await fetch(('http://localhost:3002/users/' + id), {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'Application/json',
@@ -127,7 +126,7 @@ const Main = (props) => {
         }else{
             getStocks(null);
         }
-    }, [props.user,getStocks, updateStockValues]);
+    }, [props.user, getStocks, updateStockValues]);
 
 
         return(
@@ -135,7 +134,7 @@ const Main = (props) => {
                 <Routes>
                     < Route path='/' element={<Homepage user={props.user}/>} />
                     < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
-                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
+                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user} getUserStocks={getUserStocks}/>} />
                     < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
                     < Route path='/form' element={<Form user={props.user}/>}/>
