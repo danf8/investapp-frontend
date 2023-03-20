@@ -10,32 +10,23 @@ import Form from '../pages/Form';
 
 const Main = (props) => {
 
-    const [stocks, setStocks] = useState(null);
-    const [userIndexState, setUserIndexState] = useState(null);
-    const API_URL = "http://localhost:5000/stocks";
-
     const getUserStocks = useCallback(async () => {
         try {
             if (props.user) {
-                // console.log("Logging the user :" + JSON.stringify(props.user));
                 const token = await props.user.getIdToken();
-                const response = await fetch(`${API_URL}/user`, {
+                const response = await fetch(API_URL +'/user', {
                     method: 'GET',
                     headers: {
                         'Authorization': 'Bearer ' + token
                     }
                 });
                 const data = await response.json();
-                console.log(data)
                 setUserIndexState(data);
             }
         } catch (error) {
             console.error(error);
         };
     }, [props.user]);
-    // console.log("New state: " + JSON.stringify(userIndexState))
-
-
     const getStocks = useCallback(async () => {
         try {
             if (props.user) {
@@ -59,8 +50,8 @@ const Main = (props) => {
         if (props.user) {
         console.log(props.user)
         const token = await props.user.getIdToken();
-        // console.log(token)
-                await fetch(('http://localhost:5000/users/' + id), {
+        console.log(token)
+                await fetch(('http://localhost:3002/users/' + id), {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'Application/json',
@@ -137,7 +128,6 @@ const Main = (props) => {
                     < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
                     < Route path='/form' element={<Form user={props.user}/>}/>
-                    {/* <Route path='/dashboard' element={<Dashboard user={props.user} stocks={stocks} userIndexState={userIndexState} />} /> */}
                 </Routes>
             </main>
         );
