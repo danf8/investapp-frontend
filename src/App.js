@@ -12,10 +12,10 @@ function App() {
   useEffect(()=>{
     const unsubscribe = auth.onAuthStateChanged(user=>{
       setUser(user);
-      if(user){
-        // navigate('/form', {replace: true});
-        window.location.href = '/form';
-      }
+      // if(user){
+      //   // navigate('/form', {replace: true});
+      //   window.location.href = '/form';
+      // }
     });
     return()=>{
       unsubscribe();
