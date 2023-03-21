@@ -13,7 +13,7 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged(user=>{
       setUser(user);
       if(user){
-        navigate('/form');
+        navigate('/form', {replace: true});
       }
     });
     return()=>{
