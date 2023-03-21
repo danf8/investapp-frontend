@@ -14,12 +14,12 @@ function SignIn(props) {
       await signIn(email, password);
       console.log("User signed in successfully");
       // Redirect the user here
-      window.location.href = '/form';
+      window.location.href = '/stocks';
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };

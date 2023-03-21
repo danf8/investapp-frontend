@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import '../Css/index.css'
+import { useEffect, useCallback } from 'react';
 
 const Index = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredStocks, setFilteredStocks] = useState(props.stocks);
-   
+
+
 
   const handleSearchTermChange = (event) => {
       setSearchTerm(event.target.value);
@@ -19,7 +21,7 @@ const Index = (props) => {
       const filteredStocks = props.stocks.filter((stock) => {
         return stock.name && stock.name.toLowerCase().includes(searchTerm.toLowerCase());
       });
-  
+
       if (filteredStocks.length > 0) {
         setFilteredStocks(filteredStocks);
       } else {

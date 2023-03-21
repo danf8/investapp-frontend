@@ -29,7 +29,7 @@ const auth = getAuth(app);
 function signUp(email, password) {
     // Create user with email and password
     return createUserWithEmailAndPassword(auth, email, password);
-};  
+};
 
 function profileUpdate (displayName) {
   try {
@@ -51,7 +51,7 @@ function signIn(email, password) {
 function loginWithGoogle(){
   return signInWithPopup(auth, provider)
   .then(() => {
-    window.location.href = '/form';
+    window.location.href = '/stocks';
   })
   .catch((error) => {
     console.log(error);

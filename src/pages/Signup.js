@@ -14,7 +14,7 @@ function SignUp(props){
       try {
         await signUp(email, password);
         await profileUpdate(displayName);
-        window.location.href = '/form';
+        window.location.href = '/stocks';
       } catch (error) {
         console.error(error);
       }
