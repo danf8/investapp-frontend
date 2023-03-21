@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(()=>{
     const unsubscribe = auth.onAuthStateChanged(user=>{
