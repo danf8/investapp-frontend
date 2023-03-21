@@ -20,9 +20,9 @@
 ## Application Screenshots
 
 <img src ='./screenshots/homepage.png' width= '400' height= '300'>
-<img src ='./screenshots/login-page.png' width= '400' height= '300'>
-<img src ='./screenshots/index-page.png' width= '400' height= '300'>
-<img src ='./screenshots/show-page.png' width= '400' height= '300'>
+<img src ='./screenshots/Login-page.png' width= '400' height= '300'>
+<img src ='./screenshots/Index-page.png' width= '400' height= '300'>
+<img src ='./screenshots/Show-page.png' width= '400' height= '300'>
 
 ## Getting Started
 
