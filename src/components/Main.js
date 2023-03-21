@@ -6,32 +6,15 @@ import Signin from '../pages/Signin';
 import SignUp from '../pages/Signup';
 import Homepage from '../pages/Homepage';
 import Form from '../pages/Form';
-// import Dashboard from '../pages/Dashboard';
-
+import UserStockData from '../pages/UserStockData'
 const Main = (props) => {
     const [stocks, setStocks] = useState(null);
-    const [userIndexState, setUserIndexState] = useState(null);
+
+    const [userStocks, setUserStocks] = useState(null);
+
+
     const API_URL = "http://localhost:3002/stocks";
 
-    const getUserStocks = useCallback(async () => {
-        try {
-            if (props.user) {
-                // console.log("Logging the user :" + JSON.stringify(props.user));
-                const token = await props.user.getIdToken();
-                const response = await fetch(`${API_URL}/user`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                });
-                const data = await response.json();
-                console.log(data)
-                setUserIndexState(data);
-            }
-        } catch (error) {
-            console.error(error);
-        };
-    }, [props.user]);
     // console.log("New state: " + JSON.stringify(userIndexState))
     console.log(userIndexState)
 
@@ -72,6 +55,28 @@ const Main = (props) => {
         console.log(error);
         }
     }
+
+    const getUserStocks = async () => {
+        try {
+        if (props.user) {
+          const token = await props.user.getIdToken();
+          console.log(token)
+               const response = await fetch(('http://localhost:3002/userStocks/' + props.user.uid), {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'Application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                });
+                const data = await response.json();
+                setUserStocks(data);
+            }
+        } catch (error) {
+        console.log(error);
+        }
+    }
+
+
 
     const updateStockComment = async (stock, id) => {
         try {
@@ -118,25 +123,25 @@ const Main = (props) => {
                     updateStockValues()
                 }
             }, 1000* 60 * 60);
-            if(props.user){
-                getStocks();
-                getUserStocks()
-            }else{
-                getStocks(null);
-                getUserStocks(null)
-            }
-        }, [props.user,getStocks, updateStockValues, getUserStocks ]);
+        if(props.user) {
+            getStocks();
+            getUserStocks();
+        }else{
+            getStocks(null);
+        }
+    }, [props.user, getStocks, updateStockValues]);
+
 
         return(
             <main>
                 <Routes>
                     < Route path='/' element={<Homepage user={props.user}/>} />
                     < Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
-                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user}/>} />
+                    < Route path='/stocks/:id' element={ < Show stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user} getUserStocks={getUserStocks}/>} />
                     < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
                     < Route path='/form' element={<Form user={props.user}/>}/>
-                    {/* <Route path='/dashboard' element={<Dashboard user={props.user} stocks={stocks} userIndexState={userIndexState} />} /> */}
+                    < Route path={'/userStocks/:id'}element={<UserStockData user={props.user} userStocks={userStocks}/>}/>
                 </Routes>
             </main>
         );

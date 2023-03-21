@@ -37,22 +37,22 @@ const Homepage = (props) => {
                 const data = await response.json();
                     //reverse stockindexstate to display information in correct over on chart
                 data[0].historical = data[0].historical.reverse()
-                setStockIndex(data);    
+                setStockIndex(data);
         } catch (error) {
             console.error(error);
         };
     };
 
-//loads chart 
+//loads chart
   const loadChart = () => {
     const stockClose = stockIndexState[0].historical.map((stock) => stock.close)
-    const labels = stockIndexState[0].historical.map((stock) => stock.date) 
+    const labels = stockIndexState[0].historical.map((stock) => stock.date)
 
   const options = {
       responsive: true,
       plugins: {
         legend: {
-          position: 'top' 
+          position: 'top'
         },
         title: {
           display: true,
