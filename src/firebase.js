@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {GoogleAuthProvider, signInWithRedirect, signOut, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import {GoogleAuthProvider, getRedirectResult, signInWithRedirect, signOut, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -48,15 +48,34 @@ function signIn(email, password) {
 };
 
 //config login & logout workflows
-function loginWithGoogle(){
-  return signInWithRedirect(auth, provider)
-  .then(() => {
+// function loginWithGoogle(){
+//   return signInWithRedirect(auth, provider)
+//   .then(() => {
+//     window.location.href = '/form';
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+// };
+
+async function loginWithGoogle() {
+  try {
+    // Sign in with Google using the redirect flow
+    await signInWithRedirect(auth, provider);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+// If yes, redirect the user to the form page
+getRedirectResult(auth).then((result) => {
+  if (result.user) {
     window.location.href = '/form';
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-};
+  }
+}).catch((error) => {
+  console.error(error);
+});
 
 function logout(){
   return signOut(auth);
