@@ -11,7 +11,7 @@ import Form from '../pages/Form';
 const Main = (props) => {
     const [stocks, setStocks] = useState(null);
     const [userIndexState, setUserIndexState] = useState(null);
-    const API_URL = "http://localhost:5000/stocks";
+    const API_URL = "http://localhost:3002/stocks";
 
     const getUserStocks = useCallback(async () => {
         try {
@@ -58,7 +58,7 @@ const Main = (props) => {
         console.log(props.user)
         const token = await props.user.getIdToken();
         // console.log(token)
-                await fetch(('http://localhost:5000/users/' + id), {
+                await fetch(('http://localhost:3002/users/' + id), {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'Application/json',
