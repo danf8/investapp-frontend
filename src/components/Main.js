@@ -9,12 +9,13 @@ import Form from '../pages/Form';
 import UserStockData from '../pages/UserStockData'
 const Main = (props) => {
     const [stocks, setStocks] = useState(null);
+
     const [userStocks, setUserStocks] = useState(null);
 
-    // const API_URL = "http://localhost:5000/stocks";
     const API_URL = "https://investing-buddy.herokuapp.com/stocks";
 
     // console.log("New state: " + JSON.stringify(userIndexState))
+
 
     const getStocks = useCallback(async () => {
         try {
@@ -44,6 +45,7 @@ const Main = (props) => {
                 // await fetch(('http://localhost:5000/users/' + id), {
                     method: 'PUT',
                     headers: {
+                        'Access-Control-Allow-Origin': 'http://localhost:3000',
                         'Content-Type': 'Application/json',
                         'Authorization': 'Bearer ' + token
                     },
@@ -60,8 +62,7 @@ const Main = (props) => {
         if (props.user) {
           const token = await props.user.getIdToken();
           console.log(token)
-               const response = await fetch(('https://investing-buddy.herokuapp.com/userStocks/' + props.user.uid), {
-            //    const response = await fetch(('http://localhost:5000/userStocks/' + props.user.uid), {
+               const response = await fetch(("https://investing-buddy.herokuapp.com/userstocks/" + props.user.uid), {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'Application/json',

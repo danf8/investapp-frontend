@@ -29,7 +29,7 @@ const auth = getAuth(app);
 function signUp(email, password) {
     // Create user with email and password
     return createUserWithEmailAndPassword(auth, email, password);
-};  
+};
 
 function profileUpdate (displayName) {
   try {
