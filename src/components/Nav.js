@@ -10,11 +10,11 @@ const Nav = (props) => {
       <ul>
         {props.user ? (
           <>
-          <Link to={"/userStocks/" + props.user.uid}>
-              <div>My Investments</div>
-            </Link>
             <Link id='home' to="/stocks">
-              <button >Home</button>
+              <button>Home</button>
+            </Link>
+          <Link id='myinvestment' to={"/userStocks/" + props.user.uid}>
+          <button>My Investments</button>
             </Link>
             {(!props.user.photoURL) &&
             <li id='welcome'>Welcome, {props.user.displayName}</li>

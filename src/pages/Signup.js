@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginWithGoogle, signUp, profileUpdate} from '../firebase';
 import '../Css/signup.css'
 
@@ -7,6 +7,7 @@ function SignUp(props){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [displayName, setDisplayName] = useState("");
+    const navigate = useNavigate();
 
     //submit
     const handleSignup = async (event) => {
@@ -14,7 +15,8 @@ function SignUp(props){
       try {
         await signUp(email, password);
         await profileUpdate(displayName);
-        window.location.href = '/form';
+        // window.location.href = '/form';
+        navigate('/stocks', {replace: true});
       } catch (error) {
         console.error(error);
       }

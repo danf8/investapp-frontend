@@ -12,7 +12,6 @@ const Main = (props) => {
 
     const [userStocks, setUserStocks] = useState(null);
 
-
     const API_URL = "https://investing-buddy.herokuapp.com/stocks";
 
     // console.log("New state: " + JSON.stringify(userIndexState))
@@ -42,7 +41,8 @@ const Main = (props) => {
         console.log(props.user)
         const token = await props.user.getIdToken();
         // console.log(token)
-                await fetch(("https://investing-buddy.herokuapp.com/users/" + id), {
+                await fetch(('https://investing-buddy.herokuapp.com/users/' + id), {
+                // await fetch(('http://localhost:5000/users/' + id), {
                     method: 'PUT',
                     headers: {
                         'Access-Control-Allow-Origin': 'http://localhost:3000',
@@ -57,7 +57,7 @@ const Main = (props) => {
         }
     }
 
-    const getUserStocks = async () => {
+    const getUserStocks = useCallback(async () => {
         try {
         if (props.user) {
           const token = await props.user.getIdToken();
@@ -75,7 +75,7 @@ const Main = (props) => {
         } catch (error) {
         console.log(error);
         }
-    }
+    }, [props.user])
 
 
 
@@ -130,7 +130,7 @@ const Main = (props) => {
         }else{
             getStocks(null);
         }
-    }, [props.user, getStocks, updateStockValues]);
+    }, [props.user, getStocks, updateStockValues, getUserStocks]);
 
 
         return(
@@ -142,7 +142,7 @@ const Main = (props) => {
                     < Route path='/signin' element={<Signin user={props.user}/>}/>
                     < Route path='/signup' element={<SignUp/>}/>
                     < Route path='/form' element={<Form user={props.user}/>}/>
-                    < Route path={'/userStocks/:id'}element={<UserStockData user={props.user} userStocks={userStocks}/>}/>
+                    < Route path='/userStocks/:id' element={<UserStockData user={props.user} userStocks={userStocks}/>}/>
                 </Routes>
             </main>
         );

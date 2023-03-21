@@ -48,7 +48,6 @@ const Index = (props) => {
               </Link>
               <p>${stock.price}</p>
           </div>
-
         ));
       }
     };
