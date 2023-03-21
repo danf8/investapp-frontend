@@ -1,4 +1,6 @@
 // import { useState } from 'react';
+import '../Css/Form.css'
+
 
 const Form = (props) => {
   // const [newUser, setNewUser] = useState(false);
@@ -48,7 +50,7 @@ const Form = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id='Form' onSubmit={handleSubmit}>
       {/* <label>
         <h1>Is this your first time logging onto this website?</h1>
         This is my first time logging onto this website:
@@ -59,7 +61,7 @@ const Form = (props) => {
         <input type="checkbox" name="notNewUser" checked={notNewUser} onChange={handleNotNewUserChange}></input>
       </label><br/><br/> */}
       {/* <h1>Click here to continue</h1> */}
-      <button type="submit">continue to the your home page</button>
+      <button id='Formbtn' type="submit">Start Learning Now!</button>
     </form>
   );
 }

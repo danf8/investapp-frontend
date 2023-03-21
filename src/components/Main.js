@@ -11,7 +11,8 @@ const Main = (props) => {
     const [stocks, setStocks] = useState(null);
     const [userStocks, setUserStocks] = useState(null);
 
-    const API_URL = "http://localhost:3002/stocks";
+    // const API_URL = "http://localhost:5000/stocks";
+    const API_URL = "https://investing-buddy/herokuapp.com/stocks";
 
     // console.log("New state: " + JSON.stringify(userIndexState))
 
@@ -39,7 +40,7 @@ const Main = (props) => {
         console.log(props.user)
         const token = await props.user.getIdToken();
         // console.log(token)
-                await fetch(('http://localhost:3002/users/' + id), {
+                await fetch(('https://investing-buddy.herokuapp.com/users/' + id), {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'Application/json',
@@ -53,12 +54,12 @@ const Main = (props) => {
         }
     }
 
-    const getUserStocks = async () => {
+    const getUserStocks = useCallback(async () => {
         try {
         if (props.user) {
           const token = await props.user.getIdToken();
           console.log(token)
-               const response = await fetch(('http://localhost:3002/userStocks/' + props.user.uid), {
+               const response = await fetch(('https://investing-buddy.herokuapp.com/userStocks/' + props.user.uid), {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'Application/json',
@@ -71,7 +72,7 @@ const Main = (props) => {
         } catch (error) {
         console.log(error);
         }
-    }
+    }, [props.user])
 
 
 
@@ -126,7 +127,7 @@ const Main = (props) => {
         }else{
             getStocks(null);
         }
-    }, [props.user, getStocks, updateStockValues]);
+    }, [props.user, getStocks, updateStockValues, getUserStocks]);
 
 
         return(
