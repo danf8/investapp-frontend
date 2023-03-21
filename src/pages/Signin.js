@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginWithGoogle, signIn } from '../firebase';
 import { useState } from 'react';
 import '../Css/signin.css';
@@ -7,6 +7,7 @@ function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const SignIn_URL = "http://localhost:5000/signin";
+  const navigate = useNavigate();
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -14,7 +15,8 @@ function SignIn(props) {
       await signIn(email, password);
       console.log("User signed in successfully");
       // Redirect the user here
-      window.location.href = '/form';
+      // window.location.href = '/form';
+      navigate('/form', {replace: true});
     } catch (error) {
       console.error(error);
     }
