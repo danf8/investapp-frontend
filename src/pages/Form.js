@@ -52,7 +52,6 @@ import { useNavigate } from 'react-router-dom';
     }
   }
   
-}
   return (
     <form id='Form' onSubmit={handleSubmit}>
       {/* <label>
