@@ -20,7 +20,7 @@
 ## Application Screenshots
 
 <img src ='./screenshots/homepage.png' width= '400' height= '300'>
-<img src ='./screenshots/Login-page.png' width= '400' height= '300'>
+<img src ='./screenshots/signin-page.png' width= '400' height= '300'>
 <img src ='./screenshots/Index-page.png' width= '400' height= '300'>
 <img src ='./screenshots/Show-page.png' width= '400' height= '300'>
 
