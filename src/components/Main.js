@@ -9,11 +9,14 @@ import Form from '../pages/Form';
 import UserStockData from '../pages/UserStockData'
 const Main = (props) => {
     const [stocks, setStocks] = useState(null);
+
     const [userStocks, setUserStocks] = useState(null);
+
 
     const API_URL = "http://localhost:3002/stocks";
 
     // console.log("New state: " + JSON.stringify(userIndexState))
+    console.log(userIndexState)
 
     const getStocks = useCallback(async () => {
         try {
