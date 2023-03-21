@@ -30,10 +30,10 @@ const Main = (props) => {
             }
         } catch (error) {
             console.error(error);
-            console.log(userIndexState)
         };
     }, [props.user]);
     // console.log("New state: " + JSON.stringify(userIndexState))
+    console.log(userIndexState)
 
     const getStocks = useCallback(async () => {
         try {
