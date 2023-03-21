@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import Main from './components/Main';
 import Nav from './components/Nav';
 import './App.css';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -13,7 +13,8 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged(user=>{
       setUser(user);
       if(user){
-        navigate('/form', {replace: true});
+        // navigate('/form', {replace: true});
+        window.location.href = '/form';
       }
     });
     return()=>{
