@@ -14,8 +14,6 @@ const Main = (props) => {
     // const API_URL = "http://localhost:5000/stocks";
     const API_URL = "https://investing-buddy/herokuapp.com/stocks";
 
-    // console.log("New state: " + JSON.stringify(userIndexState))
-
     const getStocks = useCallback(async () => {
         try {
             if (props.user) {
