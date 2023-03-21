@@ -30,13 +30,13 @@ const Form = (props) => {
     try {
       if (props.user) {
         const token = await props.user.getIdToken();
-        await fetch('http://localhost:3002/users', {
+        await fetch('https://investing-buddy/herokuapp.com/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'Application/json',
             'Authorization': 'Bearer ' + token
           },
-          body: JSON.stringify({ownedStocks, currentMoney, uid}) // empty object for now
+          body: JSON.stringify({ownedStocks, currentMoney: 10000, uid}) // empty object for now
         })
         .catch((error) => {
           console.error(error);

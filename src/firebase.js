@@ -51,7 +51,7 @@ function signIn(email, password) {
 function loginWithGoogle(){
   return signInWithPopup(auth, provider)
   .then(() => {
-    window.location.href = '/stocks';
+    window.location.href = '/form';
   })
   .catch((error) => {
     console.log(error);
