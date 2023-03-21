@@ -71,7 +71,7 @@ async function loginWithGoogle() {
 // If yes, redirect the user to the form page
 getRedirectResult(auth).then((result) => {
   if (result.user) {
-    window.location.href = '/form';
+    window.location.href = 'https://thunderous-cactus-ea99a9.netlify.app/form';
   }
 }).catch((error) => {
   console.error(error);
