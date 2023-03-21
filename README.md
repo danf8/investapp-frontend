@@ -1,6 +1,6 @@
 # Invest-App
 
-### A web application that allows users to practice trading and investing in stocks. Users can also add comments to an individual stock to provided information to other users. Please note stock values are currently updated once per day at 4 PM EST.
+### A web application that allows users to practice trading and investing in stocks. Users can also add comments to an individual stock to provided information to other users on stock performance. Please note stock values are currently updated once per day at 4 PM EST.
 
 ## Technologies Used
 
@@ -20,7 +20,7 @@
 ## Application Screenshots
 
 <img src ='./screenshots/homepage.png' width= '400' height= '300'>
-<img src ='./screenshots/login-page.png' width= '400' height= '300'>
+<img src ='./screenshots/signin-page.png' width= '400' height= '300'>
 <img src ='./screenshots/Index-page.png' width= '400' height= '300'>
 <img src ='./screenshots/Show-page.png' width= '400' height= '300'>
 
@@ -33,4 +33,5 @@ Click here to visit site.....[LINK](https://thunderous-cactus-ea99a9.netlify.app
 # Future Enhancements 
  * Display updated stock information in real time
  * Add a news feed section specific to the stock a user is viewing
+ * Add charts for each stock
  

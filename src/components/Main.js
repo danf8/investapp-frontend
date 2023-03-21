@@ -9,11 +9,14 @@ import Form from '../pages/Form';
 import UserStockData from '../pages/UserStockData'
 const Main = (props) => {
     const [stocks, setStocks] = useState(null);
+
     const [userStocks, setUserStocks] = useState(null);
+
 
     const API_URL = "https://investing-buddy.herokuapp.com/stocks";
 
     // console.log("New state: " + JSON.stringify(userIndexState))
+
 
     const getStocks = useCallback(async () => {
         try {
