@@ -35,8 +35,8 @@ import { useNavigate } from 'react-router-dom';
           try {
             if (props.user) {
               const token = await props.user.getIdToken();
-        await fetch('http://localhost:5000/users', {
-        // await fetch('https://investing-buddy.herokuapp.com/users', {
+        // await fetch('http://localhost:5000/users', {
+        await fetch('https://investing-buddy.herokuapp.com/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'Application/json',
