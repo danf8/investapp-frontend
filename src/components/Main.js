@@ -12,8 +12,8 @@ const Main = (props) => {
 
     const [userStocks, setUserStocks] = useState(null);
 
-    // const API_URL = "https://investing-buddy.herokuapp.com/stocks";
-    const API_URL = "http://localhost:3002/stocks";
+    const API_URL = "https://investing-app-1.herokuapp.com/stocks";
+    // const API_URL = "http://localhost:3002/stocks";
 
     // console.log("New state: " + JSON.stringify(userIndexState))
 
@@ -42,8 +42,8 @@ const Main = (props) => {
         console.log(props.user)
         const token = await props.user.getIdToken();
         // console.log(token)
-                // await fetch(('https://investing-buddy.herokuapp.com/users/' + id), {
-                await fetch(('http://localhost:3002/users/' + id), {
+                await fetch(('https://investing-app-1.herokuapp.com/users/' + id), {
+                // await fetch(('http://localhost:3002/users/' + id), {
                     method: 'PUT',
                     headers: {
                         'Access-Control-Allow-Origin': 'http://localhost:3002',
@@ -63,8 +63,8 @@ const Main = (props) => {
         if (props.user) {
           const token = await props.user.getIdToken();
           console.log(token)
-            //    const response = await fetch(("https://investing-buddy.herokuapp.com/userstocks/" + props.user.uid), {
-               const response = await fetch(("http://localhost:3002/userstocks/" + props.user.uid), {
+               const response = await fetch(("https://investing-app-1.herokuapp.com/userstocks/" + props.user.uid), {
+            //    const response = await fetch(("http://localhost:3002/userstocks/" + props.user.uid), {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'Application/json',
