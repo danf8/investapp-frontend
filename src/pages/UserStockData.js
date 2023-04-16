@@ -24,7 +24,7 @@ const UserStockData = (props) => {
   //   }
   // }
 
-  console.log(props.userStocks)
+  // console.log(props.userStocks)
   let totalInvestmentValues = 0;
   if(props.userStocks !== null) {
   return (

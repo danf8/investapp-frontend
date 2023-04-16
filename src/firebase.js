@@ -7,12 +7,12 @@ import {GoogleAuthProvider, signInWithPopup, signOut, getAuth, createUserWithEma
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB38Zhr2JhYQIVERAXnili2icqBMoPWnPU",
-  authDomain: "investing-buddy-app.firebaseapp.com",
-  projectId: "investing-buddy-app",
-  storageBucket: "investing-buddy-app.appspot.com",
-  messagingSenderId: "181490635572",
-  appId: "1:181490635572:web:13ed50793a9dbbec980b61"
+  apiKey: "AIzaSyA5w7XAmg-S4vi9BHSBWi3GXJC1c2LPurY",
+  authDomain: "investing-app-1.firebaseapp.com",
+  projectId: "investing-app-1",
+  storageBucket: "investing-app-1.appspot.com",
+  messagingSenderId: "735981584735",
+  appId: "1:735981584735:web:106fe44a42beded149b6ea"
 };
 
 // Initialize Firebase with the given configuration obj
