@@ -1,20 +1,19 @@
-import { Link, useLocation, useNavigate  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginWithGoogle, logout } from '../firebase';
 import '../css/nav.css';
 
 const Nav = (props) => {
-  const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogin = async()=>{
     await loginWithGoogle();
-    navigate('/form')
-  }
+    navigate('/form');
+  };
 
   const handleLogout = async()=>{
     await logout();
-    navigate('/')
-  }
+    navigate('/');
+  };
 
   return (
     <nav className='nav'>
@@ -24,8 +23,8 @@ const Nav = (props) => {
             <Link id='home' to="/stocks">
               <button>Home</button>
             </Link>
-          <Link id='myinvestment' to={"/userStocks/" + props.user.uid}>
-          <button>My Investments</button>
+            <Link id='myinvestment' to={"/userStocks/" + props.user.uid}>
+              <button>My Investments</button>
             </Link>
             {(!props.user.photoURL) &&
             <li id='welcome'>Welcome, {props.user.displayName}</li>
@@ -44,27 +43,21 @@ const Nav = (props) => {
               </Link>
             </li>
           </>
-        ) : (
+        ) : ( 
           <>
-            {(() => {
-              if (location.pathname !== '/signin' && location.pathname !== '/signup') {
-                return (
-                  <>
-                    <ul>
-                    <Link to='/signin'>
-                      <button>Sign in</button>
-                    </Link>
-                    <Link to='/signup'>
-                      <button>Sign up</button>
-                    </Link>
-                    <Link to='/stocks'>
-                      <button onClick={handleLogin}>Login with Google</button>
-                    </Link>
-                      </ul>
-                  </>
-                );
-              }
-            })()}
+            <>
+              <ul>
+              <Link to='/signin'>
+                <button>Sign in</button>
+              </Link>
+              <Link to='/signup'>
+                <button>Sign up</button>
+              </Link>
+              <Link to='/stocks'>
+                <button onClick={handleLogin}>Login with Google</button>
+              </Link>
+                </ul>
+            </>
           </>
         )}
       </ul>
