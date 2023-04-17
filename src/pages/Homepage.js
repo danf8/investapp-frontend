@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -25,10 +25,9 @@ import {
 const Homepage = (props) => {
     const [stockIndexState, setStockIndex ] = useState(null)
     // const API_INDEX_URL = "http://localhost:3002/";
-    // const API_INDEX_URL = "https://investing-buddy.herokuapp.com";
     const API_INDEX_URL = "https://investing-app-1.herokuapp.com";
     
-    const getStockIndex = async () => {
+    const getStockIndex = useCallback( async () => {
         try {
                 const response = await fetch(API_INDEX_URL, {
                     method: 'GET',
@@ -43,7 +42,7 @@ const Homepage = (props) => {
         } catch (error) {
             console.error(error);
         };
-    };
+    }, [])
 
 //loads chart
   const loadChart = () => {
@@ -83,7 +82,7 @@ const Homepage = (props) => {
 
     useEffect(() => {
       getStockIndex();
-  },[]);
+  },[getStockIndex]);
 
     return(
       <>
