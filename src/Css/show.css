@@ -43,7 +43,6 @@ hr {
     border-radius: 6px;
     border-color: #d1d3db;
     justify-content: center;
-    width: 380px;
 }
 
 .commentList{
@@ -52,6 +51,13 @@ hr {
     margin-left: -40px;
     height: 5px;
     margin-top: 5px;
+}
+
+.comments {
+    background-color: #ffffff;
+    border: solid;
+    border-color: #d1d3db;
+    border-radius: 6px;
 }
 
 #addComment {

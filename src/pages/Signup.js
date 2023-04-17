@@ -15,7 +15,6 @@ function SignUp(props){
       try {
         await signUp(email, password);
         await profileUpdate(displayName);
-        // window.location.href = '/form';
         navigate('/form', {replace: true});
       } catch (error) {
         console.error(error);

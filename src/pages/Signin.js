@@ -14,8 +14,6 @@ function SignIn(props) {
     try {
       await signIn(email, password);
       console.log("User signed in successfully");
-      // Redirect the user here
-      // window.location.href = '/form';
       navigate('/form', {replace: true});
     } catch (error) {
       console.error(error);

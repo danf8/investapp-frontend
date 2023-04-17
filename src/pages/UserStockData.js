@@ -31,11 +31,11 @@ const UserStockData = (props) => {
     <div className='userstockM'>
     <h1>Current Funds in Wallet: {props.userStocks.currentMoney}</h1>
     <ul>
-      {props.userStocks.ownedStocks.map(stock => {
+      {props.userStocks.ownedStocks.map((stock, index) => {
         const  numberOfShares = +(stock[0].ownedShares[0])
         totalInvestmentValues += (stock[0].stockToBuy.price * numberOfShares)
         return(
-        <section className='userstock'>
+        <section className='userstock' key={index}>
         <li><strong>Ticker Symbol:</strong> {stock[0].stockToBuy.symbol}</li>
         <li><strong>Current Price Per Share:</strong> {stock[0].stockToBuy.price}</li>
         <li><strong>Number of shares you own:</strong>{stock[0].ownedShares[0]}</li>
