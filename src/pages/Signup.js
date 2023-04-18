@@ -9,7 +9,6 @@ function SignUp(props){
     const [displayName, setDisplayName] = useState("");
     const navigate = useNavigate();
 
-    //submit
     const handleSignup = async (event) => {
       event.preventDefault();
       try {
@@ -17,11 +16,10 @@ function SignUp(props){
         profileUpdate(displayName);
         navigate('/form', {replace: true});
       } catch (error) {
-        // console.error(error);
+        console.error(error);
       }
     };
 
-    //on change
     const handleNameChange = (event) => {
       setDisplayName(event.target.value);
     };

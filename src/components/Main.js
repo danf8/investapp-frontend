@@ -11,10 +11,15 @@ import UserStockData from '../pages/UserStockData';
 const Main = (props) => {
     const [stocks, setStocks] = useState(null);
     const [userStocks, setUserStocks] = useState(null);
+    const [newBuyForm, setBuyForm] = useState({
+        symbol: '',
+        name: '',
+        amountOwned: 0,
+        price: '',
+    });
 
     const API_URL = "https://investing-app-1.herokuapp.com/";
     // const API_URL = "http://localhost:3002/";
-    // const API_URL = "http://localhost:3002/stocks";
 
     const openModal = () => {
         props.setModalOpen(true);
@@ -55,7 +60,8 @@ const Main = (props) => {
                         'Authorization': 'Bearer ' + token
                     },
                     body: JSON.stringify(purchasedStock),
-                })
+                });
+                getUserStocks()
             }
         } catch (error) {
         // console.log(error);
@@ -74,6 +80,7 @@ const Main = (props) => {
                 },
             });
             const data = await response.json();
+            console.log('data', data)
             setUserStocks(data);
         }
         } catch (error) {
@@ -85,7 +92,7 @@ const Main = (props) => {
         try {
             if (props.user) {
                 const token = await props.user.getIdToken();
-                await fetch(API_URL + '/' + id, {
+                await fetch(API_URL + id, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'Application/json',
@@ -96,7 +103,7 @@ const Main = (props) => {
                 getStocks();
             };
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         };
     };
 
@@ -113,7 +120,7 @@ const Main = (props) => {
                 });
             }
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         };
     }, [props.user]);
 
@@ -139,7 +146,17 @@ const Main = (props) => {
                 <Routes>
                     <Route path='/' element={<Homepage user={props.user} API_URL={API_URL}/>} />
                     <Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
-                    <Route path='/stocks/:id' element={ <Show closeModal={closeModal} openModal={openModal} modalOpen={props.modalOpen} setModalOpen={props.setModalOpen} stocks={stocks} updateStockComment={updateStockComment} updateOwnedStocks={updateOwnedStocks} user={props.user} getUserStocks={getUserStocks}/>} />
+                    <Route path='/stocks/:id' element={ <Show closeModal={closeModal}
+                     openModal={openModal}
+                      modalOpen={props.modalOpen}
+                       setModalOpen={props.setModalOpen}
+                        stocks={stocks}
+                         updateStockComment={updateStockComment}
+                          updateOwnedStocks={updateOwnedStocks}
+                           user={props.user}
+                            newBuyForm={newBuyForm}
+                            setBuyForm={setBuyForm}
+                            />} />
                     <Route path='/signin' element={<Signin user={props.user}/>}/>
                     <Route path='/signup' element={<SignUp/>}/>
                     <Route path='/form' element={<Form user={props.user} API_URL={API_URL}/>}/>

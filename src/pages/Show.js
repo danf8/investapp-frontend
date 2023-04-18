@@ -12,23 +12,19 @@ const Show = (props) => {
         comments: ''
     });
 
-    const [newBuyForm, setBuyForm] = useState({
-        stockSymbol: '',
-        shareNum: 0
-    });
-
     const handleBuyChange = (event) => {
-        setBuyForm((prevState) => ({
-            ...prevState,
-            [event.target.name]: [event.target.value.toUpperCase()],
+        props.setBuyForm((prevState) => ({
+            price: stock.price,
+            name: stock.name,
+            symbol: stock.symbol,
+            [event.target.name]: parseInt([event.target.value]),
         }));
     };
 
     const handleOwnedStocksUpdate = (event) => {
        event.preventDefault();
-       props.updateOwnedStocks(newBuyForm, props.user.uid);
-       props.getUserStocks();
-        props.openModal();
+       props.updateOwnedStocks(props.newBuyForm, props.user.uid);
+       props.openModal();
     };
 
     const handleCommentChange = (event) => {
@@ -91,8 +87,7 @@ const Show = (props) => {
                     <input type='submit' value='submit'/>
                 </form>
                 <form id="purchaseBox" onSubmit={handleOwnedStocksUpdate}>
-                    <input type='text' name='stockSymbol' value={newBuyForm.stockSymbol} placeholder='Enter the ticker symbol to purchase' onChange={handleBuyChange}/>
-                    <input type='number' name='shareNum' value={newBuyForm.shareNum} placeholder='Enter the number of shares to purchase' onChange={handleBuyChange}/>
+                    <input type='number' name='amountOwned' value={props.newBuyForm.amountOwned} placeholder='Enter the number of shares to purchase' onChange={handleBuyChange}/>
                     <input type='submit' value='Buy it now'/>
                 </form>
                 <Modal isOpen={props.modalOpen} onRequestClose={props.closeModal} appElement={document.getElementById('purchaseBox')} >
