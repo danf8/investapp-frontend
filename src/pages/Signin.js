@@ -4,19 +4,17 @@ import { useState } from 'react';
 import '../css/signin.css';
 
 function SignIn(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // const SignIn_URL = "http://localhost:5000/signin";
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const navigate = useNavigate();
 
   const handleSignIn = async (event) => {
     event.preventDefault();
     try {
       await signIn(email, password);
-      console.log("User signed in successfully");
       navigate('/form', {replace: true});
     } catch (error) {
-      console.error(error);
+
     }
   };
 

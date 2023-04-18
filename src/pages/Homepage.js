@@ -24,12 +24,10 @@ import {
 
 const Homepage = (props) => {
     const [stockIndexState, setStockIndex ] = useState(null)
-    // const API_INDEX_URL = "http://localhost:3002/";
-    const API_INDEX_URL = "https://investing-app-1.herokuapp.com";
     
     const getStockIndex = useCallback( async () => {
         try {
-                const response = await fetch(API_INDEX_URL, {
+                const response = await fetch(props.API_URL, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'Application/json',
@@ -40,9 +38,9 @@ const Homepage = (props) => {
                 data[0].historical = data[0].historical.reverse()
                 setStockIndex(data);
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         };
-    }, [])
+    }, [props.API_URL])
 
 //loads chart
   const loadChart = () => {

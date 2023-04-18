@@ -45,19 +45,17 @@ const Nav = (props) => {
           </>
         ) : ( 
           <>
-            <>
-              <ul>
-              <Link to='/signin'>
-                <button>Sign in</button>
-              </Link>
-              <Link to='/signup'>
-                <button>Sign up</button>
-              </Link>
-              <Link to='/stocks'>
-                <button onClick={handleLogin}>Login with Google</button>
-              </Link>
-                </ul>
-            </>
+            <ul>
+            <Link to='/signin'>
+              <button>Sign in</button>
+            </Link>
+            <Link to='/signup'>
+              <button>Sign up</button>
+            </Link>
+            <Link to='/stocks'>
+              <button onClick={handleLogin}>Login with Google</button>
+            </Link>
+              </ul>
           </>
         )}
       </ul>

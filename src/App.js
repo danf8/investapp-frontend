@@ -8,9 +8,10 @@ import './App.css';
 function App() {
   const [user, setUser] = useState(null);
   // const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(()=>{
-    const unsubscribe = auth.onAuthStateChanged(user=>{
+    const unsubscribe = auth.onAuthStateChanged(user => {
       // if(user){
         setUser(user);
         // navigate('/form', {replace: true});
@@ -27,7 +28,7 @@ function App() {
   return (
     <div className="App">
         <Nav user={user} />
-        <Main user={user} />
+        <Main user={user} modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </div>
   );
 }

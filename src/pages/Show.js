@@ -17,8 +17,6 @@ const Show = (props) => {
         shareNum: 0
     });
 
-    const [modalOpen, setModalOpen] = useState(false);
-
     const handleBuyChange = (event) => {
         setBuyForm((prevState) => ({
             ...prevState,
@@ -26,19 +24,11 @@ const Show = (props) => {
         }));
     };
 
-    const openModal = () => {
-        setModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-
     const handleOwnedStocksUpdate = (event) => {
        event.preventDefault();
        props.updateOwnedStocks(newBuyForm, props.user.uid);
        props.getUserStocks();
-        openModal();
+        props.openModal();
     };
 
     const handleCommentChange = (event) => {
@@ -105,9 +95,9 @@ const Show = (props) => {
                     <input type='number' name='shareNum' value={newBuyForm.shareNum} placeholder='Enter the number of shares to purchase' onChange={handleBuyChange}/>
                     <input type='submit' value='Buy it now'/>
                 </form>
-                <Modal isOpen={modalOpen} onRequestClose={closeModal} appElement={document.getElementById('purchaseBox')} >
+                <Modal isOpen={props.modalOpen} onRequestClose={props.closeModal} appElement={document.getElementById('purchaseBox')} >
                     <h2>Stock Purchased!</h2>
-                    <button onClick={closeModal}>Close</button>
+                    <button onClick={props.closeModal}>Close</button>
                 </Modal>
             </section>
         </div>

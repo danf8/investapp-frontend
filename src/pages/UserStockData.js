@@ -31,15 +31,15 @@ const UserStockData = (props) => {
     <div className='userstockM'>
     <h1>Current Funds in Wallet: {props.userStocks.currentMoney}</h1>
     <ul>
-      {props.userStocks.ownedStocks.map((stock, index) => {
-        const  numberOfShares = +(stock[0].ownedShares[0])
-        totalInvestmentValues += (stock[0].stockToBuy.price * numberOfShares)
+      {props.userStocks.ownedStocks.map((stock, i) => {
+        const numberOfShares = +(stock[0].ownedShares[0])
+        totalInvestmentValues += (stock[0].stockPurchased.price * numberOfShares)
         return(
-        <section className='userstock' key={index}>
-        <li><strong>Ticker Symbol:</strong> {stock[0].stockToBuy.symbol}</li>
-        <li><strong>Current Price Per Share:</strong> {stock[0].stockToBuy.price}</li>
+        <section className='userstock' key={i}>
+        <li><strong>Ticker Symbol:</strong> {stock[0].stockPurchased.symbol}</li>
+        <li><strong>Current Price Per Share:</strong> {stock[0].stockPurchased.price}</li>
         <li><strong>Number of shares you own:</strong>{stock[0].ownedShares[0]}</li>
-        <li><strong>Value of current owned shares:</strong> {stock[0].stockToBuy.price * numberOfShares}</li>
+        <li><strong>Value of current owned shares:</strong> {stock[0].stockPurchased.price * numberOfShares}</li>
         </section>
       )})}
     </ul>
@@ -57,8 +57,3 @@ const UserStockData = (props) => {
 }
 
 export default UserStockData;
-
-//retrieve user stock data based on stock.user
-//map over user owned stocks and display their name, price
-//multiply each stock price by ht enumber of shares prop
-//add the results

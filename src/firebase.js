@@ -24,7 +24,6 @@ const provider = new GoogleAuthProvider();
 //create a ref to our firebase auth instance
 const auth = getAuth(app);
 
-
 //config signup & sign in
 function signUp(email, password) {
     // Create user with email and password
@@ -33,15 +32,12 @@ function signUp(email, password) {
 
 function profileUpdate (displayName) {
   try {
-    console.log("Updating display name:", displayName);
     updateProfile(auth.currentUser, { displayName: displayName.toString() });
-    console.log("Profile updated successfully");
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     throw error;
   }
 };
-
 
 function signIn(email, password) {
   return signInWithEmailAndPassword(auth, email, password);
@@ -49,13 +45,7 @@ function signIn(email, password) {
 
 //config login & logout workflows
 function loginWithGoogle(){
-  return signInWithPopup(auth, provider)
-  // .then(() => {
-  //   window.location.href = '/form';
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
+  return signInWithPopup(auth, provider);
 };
 
 function logout(){
