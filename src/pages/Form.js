@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import '../css/form.css'
+import '../Css/Form.css'
 import { useNavigate } from 'react-router-dom';
 
   const Form = (props) => {

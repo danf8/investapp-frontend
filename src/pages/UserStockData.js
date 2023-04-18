@@ -1,5 +1,5 @@
 // import { useEffect, useState, useCallback } from 'react';
-import '../css/userstock.css';
+import '../Css/Userstock.css';
 
 const UserStockData = (props) => {
 

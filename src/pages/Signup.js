@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginWithGoogle, signUp, profileUpdate} from '../firebase';
-import '../css/signup.css'
+import '../Css/signup.css'
 
 function SignUp(props){
     const [email, setEmail] = useState("");
