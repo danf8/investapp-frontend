@@ -7,6 +7,7 @@ import SignUp from '../pages/Signup';
 import Homepage from '../pages/Homepage';
 import Form from '../pages/Form';
 import UserStockData from '../pages/UserStockData';
+import Dashboard from '../pages/Dashboard';
 
 const Main = (props) => {
     const [stocks, setStocks] = useState(null);
@@ -18,8 +19,8 @@ const Main = (props) => {
         price: '',
     });
 
-    const API_URL = "https://investing-app-1.herokuapp.com/";
-    // const API_URL = "http://localhost:3002/";
+    // const API_URL = "https://investing-app-1.herokuapp.com/";
+    const API_URL = "http://localhost:3002/";
 
     const openModal = () => {
         props.setModalOpen(true);
@@ -131,8 +132,8 @@ const Main = (props) => {
             const estTime = (utcTime - 5);
             if(estTime === 16) {
                 updateStockValues();
-                }
-            }, 1000* 60 * 60);
+            }
+        }, 1000* 60 * 60);
         if(props.user) {
             getStocks();
             getUserStocks();
@@ -145,7 +146,7 @@ const Main = (props) => {
             <main>
                 <Routes>
                     <Route path='/' element={<Homepage user={props.user} API_URL={API_URL}/>} />
-                    <Route path='/stocks' element={<Index user={props.user} stocks={stocks} />}/>
+                    <Route path='/stocks' element={<Index user={props.user} stocks={stocks} openModal={openModal} closeModal={closeModal} />}/>
                     <Route path='/stocks/:id' element={ <Show closeModal={closeModal}
                      openModal={openModal}
                       modalOpen={props.modalOpen}
@@ -159,8 +160,9 @@ const Main = (props) => {
                             />} />
                     <Route path='/signin' element={<Signin user={props.user}/>}/>
                     <Route path='/signup' element={<SignUp/>}/>
-                    <Route path='/form' element={<Form user={props.user} API_URL={API_URL} userStocks={userStocks} getStocks={getStocks} />}/>
-                    <Route path='/userStocks/:id' element={<UserStockData user={props.user} userStocks={userStocks}/>}/>
+                    <Route path='/form' element={<Form user={props.user} API_URL={API_URL} userStocks={userStocks} getStocks={getStocks} getUserStocks={getUserStocks} />}/>
+                    <Route path='/userStocks/:id' element={<UserStockData user={props.user} userStocks={userStocks} stocks={stocks}/>}/>
+                    <Route path='/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks}/>}/>
                 </Routes>
             </main>
         );

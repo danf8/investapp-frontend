@@ -26,6 +26,9 @@ const Nav = (props) => {
             <Link id='myinvestment' to={"/userStocks/" + props.user.uid}>
               <button>My Investments</button>
             </Link>
+            <Link id='myinvestment' to={"/dashboard/" + props.user.uid}>
+              <button>My Dashboard</button>
+            </Link>
             {(!props.user.photoURL) &&
             <li id='welcome'>Welcome, {props.user.displayName}</li>
             }
