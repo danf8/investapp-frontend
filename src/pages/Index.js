@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import '../css/index.css'
-
+import '../css/index.css';
 
 
 const Index = (props) => {
@@ -15,20 +14,6 @@ const Index = (props) => {
   );
       setFilteredStocks(filteredStocks);
   };
-
-  const handleSearchClick = () => {
-      const filteredStocks = props.stocks.filter((stock) => {
-        return stock.name && stock.name.toLowerCase().includes(searchTerm.toLowerCase());
-      });
-
-      if (filteredStocks.length > 0) {
-        setFilteredStocks(filteredStocks);
-      } else {
-        alert(`No results for "${searchTerm}".`);
-        setSearchTerm('');
-        setFilteredStocks(props.stocks);
-      }
-    };
 
   const loadStocks = () => {
     if (searchTerm) {
@@ -67,7 +52,6 @@ const Index = (props) => {
               value={searchTerm}
               onChange={handleSearchTermChange}
             />
-            <button onClick={handleSearchClick}>Search</button>
           </div>
           <section>{props.stocks ? loadStocks() : loadingStocks()}</section>
         </>
