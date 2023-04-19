@@ -19,8 +19,17 @@ const Main = (props) => {
         price: '',
     });
 
+
     const API_URL = "https://investing-app-1.herokuapp.com/";
     // const API_URL = "http://localhost:3002/";
+    let totalInvestmentValues = 0;
+
+    if(userStocks !== null){
+        userStocks.ownedStocks.map((stock) =>  { 
+           totalInvestmentValues += (stock[0].stockPurchased.price * stock[0].ownedShares);
+           return totalInvestmentValues
+           });
+    };
 
     const openModal = () => {
         props.setModalOpen(true);
@@ -32,7 +41,7 @@ const Main = (props) => {
 
     const getStocks = useCallback(async () => {
         try {
-            if (props.user) {
+            if(props.user) {
                 const token = await props.user.getIdToken();
                 const response = await fetch(API_URL + 'stocks', {
                     method: 'GET',
@@ -43,15 +52,14 @@ const Main = (props) => {
                 const data = await response.json();
                 setStocks(data);
             }
-        } catch (error) {
+        } catch(error) {
             
         };
     }, [props.user]);
 
     const updateOwnedStocks = async (purchasedStock, id) => {
         try {
-        if (props.user) {
-        console.log(props.user)
+        if(props.user) {
         const token = await props.user.getIdToken();
                 await fetch((API_URL + 'users/' + id), {
                     method: 'PUT',
@@ -62,16 +70,16 @@ const Main = (props) => {
                     },
                     body: JSON.stringify(purchasedStock),
                 });
-                getUserStocks()
+                getUserStocks();
             }
-        } catch (error) {
+        } catch(error) {
         // console.log(error);
         }
     }
 
     const getUserStocks = useCallback(async () => {
         try {
-        if (props.user) {
+        if(props.user) {
           const token = await props.user.getIdToken();
             const response = await fetch((API_URL + 'userstocks/' + props.user.uid), {
                 method: 'GET',
@@ -81,17 +89,17 @@ const Main = (props) => {
                 },
             });
             const data = await response.json();
-            console.log('data', data)
+            // console.log('data', data)
             setUserStocks(data);
         }
-        } catch (error) {
-        console.log(error);
+        } catch(error) {
+        // console.log(error);
         }
     }, [props.user])
 
     const updateStockComment = async (stock, id) => {
         try {
-            if (props.user) {
+            if(props.user) {
                 const token = await props.user.getIdToken();
                 await fetch(API_URL + id, {
                     method: 'PUT',
@@ -103,14 +111,14 @@ const Main = (props) => {
                 });
                 getStocks();
             };
-        } catch (error) {
+        } catch(error) {
             // console.error(error);
         };
     };
 
     const updateStockValues = useCallback(async () => {
         try{
-            if (props.user) {
+            if(props.user) {
                 const token = await props.user.getIdToken();
                 await fetch(API_URL + 'stocks/update-prices',{
                     method: 'POST',
@@ -120,7 +128,7 @@ const Main = (props) => {
                     },
                 });
             }
-        } catch (error) {
+        } catch(error) {
             // console.log(error);
         };
     }, [props.user]);
@@ -145,24 +153,31 @@ const Main = (props) => {
         return(
             <main>
                 <Routes>
-                    <Route path='/' element={<Homepage user={props.user} API_URL={API_URL}/>} />
-                    <Route path='/stocks' element={<Index user={props.user} stocks={stocks} openModal={openModal} closeModal={closeModal} />}/>
+                    <Route path='/' element={<Homepage user={props.user} API_URL={API_URL}/>}/>
+                    <Route path='/stocks' element={<Index user={props.user} stocks={stocks} openModal={openModal} closeModal={closeModal}/>}/>
                     <Route path='/stocks/:id' element={ <Show closeModal={closeModal}
-                     openModal={openModal}
-                      modalOpen={props.modalOpen}
-                       setModalOpen={props.setModalOpen}
-                        stocks={stocks}
-                         updateStockComment={updateStockComment}
-                          updateOwnedStocks={updateOwnedStocks}
-                           user={props.user}
-                            newBuyForm={newBuyForm}
-                            setBuyForm={setBuyForm}
-                            />} />
+                                                                openModal={openModal}
+                                                                modalOpen={props.modalOpen}
+                                                                setModalOpen={props.setModalOpen}
+                                                                stocks={stocks}
+                                                                updateStockComment={updateStockComment}
+                                                                updateOwnedStocks={updateOwnedStocks}
+                                                                user={props.user}
+                                                                newBuyForm={newBuyForm}
+                                                                setBuyForm={setBuyForm}
+                                                                />}/>
                     <Route path='/signin' element={<Signin user={props.user}/>}/>
                     <Route path='/signup' element={<SignUp/>}/>
-                    <Route path='/form' element={<Form user={props.user} API_URL={API_URL} userStocks={userStocks} getStocks={getStocks} getUserStocks={getUserStocks} />}/>
-                    <Route path='/userStocks/:id' element={<UserStockData user={props.user} userStocks={userStocks} stocks={stocks}/>}/>
-                    <Route path='/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks}/>}/>
+                    <Route path='/form' element={<Form user={props.user}
+                                                       API_URL={API_URL}
+                                                       userStocks={userStocks}
+                                                       getStocks={getStocks}
+                                                       getUserStocks={getUserStocks}/>}/>
+                    <Route path='/userStocks/:id' element={<UserStockData user={props.user}
+                                                                            userStocks={userStocks}
+                                                                            stocks={stocks}
+                                                                            totalInvestmentValues={totalInvestmentValues}/>}/>
+                    <Route path='/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks} totalInvestmentValues={totalInvestmentValues}/>}/>
                 </Routes>
             </main>
         );
