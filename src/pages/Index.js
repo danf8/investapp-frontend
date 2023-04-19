@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import '../css/index.css';
 
-
 const Index = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredStocks, setFilteredStocks] = useState(props.stocks);
