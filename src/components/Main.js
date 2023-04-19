@@ -159,7 +159,7 @@ const Main = (props) => {
                             />} />
                     <Route path='/signin' element={<Signin user={props.user}/>}/>
                     <Route path='/signup' element={<SignUp/>}/>
-                    <Route path='/form' element={<Form user={props.user} API_URL={API_URL}/>}/>
+                    <Route path='/form' element={<Form user={props.user} API_URL={API_URL} userStocks={userStocks} getStocks={getStocks} />}/>
                     <Route path='/userStocks/:id' element={<UserStockData user={props.user} userStocks={userStocks}/>}/>
                 </Routes>
             </main>

@@ -23,7 +23,7 @@ import { useNavigate } from 'react-router-dom';
     updateNewUser(startValue);
     navigate('/stocks', {replace: true});
   };
-  
+
   // used to set users current money on db
   const updateNewUser = async(currentMoney) => {
     try {
@@ -39,17 +39,27 @@ import { useNavigate } from 'react-router-dom';
         });
       }
     } catch(error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
+  if(!props.userStocks) {
   return (
     <form id='Form' onSubmit={handleSubmit}>
       <label>Please enter your starting amount of money: $<input type="number" name="currentMoney" value={startValue.currentMoney} onChange={handleFormChange} id="" /></label>
       <button id='Formbtn' type="submit">Start Learning Now!</button>
     </form>
   );
+  } else {
+    return (
+      <div>
+        <h1>Welcome back, {props.user.displayName} </h1>
+        <h3>Your last login was on: {props.user.metadata.lastSignInTime}</h3>
+      </div>
+    )
+  };
 };
+
 
 export default Form;
 
