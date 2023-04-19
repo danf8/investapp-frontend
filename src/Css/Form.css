@@ -1,9 +1,0 @@
-#Form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#Formbtn{
-    font-size: 50px;
-}
