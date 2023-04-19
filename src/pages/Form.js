@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
   const [startValue, setStartValue] = useState({
     ownedStocks: [],
     currentMoney: 0,
+    startingMoney: 0,
   })
 
   const handleFormChange = (event) => {
@@ -15,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
       ...prevState,
        ownedStocks: [],
       [event.target.name]: parseInt([event.target.value]),
+      startingMoney: parseInt([event.target.value]),
     }));
   };
         
@@ -37,6 +39,7 @@ import { useNavigate } from 'react-router-dom';
         },
         body: JSON.stringify(currentMoney) 
         });
+        props.getUserStocks()
       }
     } catch(error) {
       // console.error(error);
