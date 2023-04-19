@@ -1,0 +1,21 @@
+.userstockM h1, .userstockM h3{
+    margin-left: 40px;
+}
+
+li{
+    list-style-type: none;
+}
+
+.userstock{
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    font-size: 15px;
+    border: solid;
+    border-radius: 6px;
+    border-color: #d1d3db;
+    width: auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: 3px;
+    margin-right: 50px;
+}

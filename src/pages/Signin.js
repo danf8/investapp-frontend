@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { loginWithGoogle, signIn } from '../firebase';
 import { useState } from 'react';
-import '../Css/signin.css';
+import '../css/signin.css';
 
 function SignIn(props) {
   const [email, setEmail] = useState();

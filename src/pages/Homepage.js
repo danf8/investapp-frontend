@@ -10,7 +10,7 @@ import {
     Legend,
   } from 'chart.js';
   import { Line } from 'react-chartjs-2';
-  import '../Css/Homepage.css';
+  import '../css/homepage.css';
 
   ChartJS.register(
     CategoryScale,

@@ -1,0 +1,51 @@
+/* .nav {
+    
+  }
+   */
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+    margin-right: 1px;
+    justify-content: space-around;
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-start; 
+    border-bottom: 1px solid rgb(212, 203, 203); 
+}
+
+.nav li{
+    margin-right: 12px;
+}
+
+.nav img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.nav button{
+    font-size: 17px;
+    border: solid;
+    border-radius: 5px;
+    background-color: inherit;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #4759bc;
+    padding: 0.5rem 1rem;
+    border-color: #4759bc;
+    margin-top: -5px;
+}
+
+#home {
+    margin-right: auto;
+  }
+
+#myinvestment {
+    margin-right: 10px;
+  }
+
+#welcome{
+    margin-top: 5px;
+}

@@ -1,4 +1,4 @@
-import '../Css/Userstock.css';
+import '../css/userstock.css';
 
 const UserStockData = (props) => {
 

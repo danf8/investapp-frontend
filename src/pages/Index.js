@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import '../Css/index.css'
+import '../css/index.css'
 
 
 

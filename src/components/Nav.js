@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { loginWithGoogle, logout } from '../firebase';
-import '../Css/nav.css';
+import '../css/nav.css';
 
 const Nav = (props) => {
   const navigate = useNavigate();
