@@ -19,8 +19,8 @@ const Main = (props) => {
         price: '',
     });
 
-    // const API_URL = "https://investing-app-1.herokuapp.com/";
-    const API_URL = "http://localhost:3002/";
+    const API_URL = "https://investing-app-1.herokuapp.com/";
+    // const API_URL = "http://localhost:3002/";
 
     const openModal = () => {
         props.setModalOpen(true);
