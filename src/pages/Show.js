@@ -15,6 +15,7 @@ const Show = (props) => {
     const handleBuyChange = (event) => {
         props.setBuyForm((prevState) => ({
             price: stock.price,
+            currentPrice: stock.price,
             name: stock.name,
             symbol: stock.symbol,
             [event.target.name]: parseInt([event.target.value]),
@@ -87,7 +88,7 @@ const Show = (props) => {
                     <input type='submit' value='submit'/>
                 </form>
                 <form id="purchaseBox" onSubmit={handleOwnedStocksUpdate}>
-                    <input type='number' name='amountOwned' value={props.newBuyForm.amountOwned} placeholder='Enter the number of shares to purchase' onChange={handleBuyChange}/>
+                    <input type='number' name='ownedShares' value={props.newBuyForm.ownedShares} placeholder='Enter the number of shares to purchase' onChange={handleBuyChange}/>
                     <input type='submit' value='Buy it now'/>
                 </form>
                 <Modal isOpen={props.modalOpen} onRequestClose={props.closeModal} appElement={document.getElementById('purchaseBox')} >

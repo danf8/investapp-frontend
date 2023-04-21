@@ -15,6 +15,10 @@ const Index = (props) => {
   };
 
   const loadStocks = () => {
+    if(props.userStocks){
+      props.updateUserStockValues();
+    };
+
     if (searchTerm) {
       return filteredStocks && filteredStocks.map((stock,index) => (
           <div className="stocks" key={index}>

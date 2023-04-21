@@ -24,7 +24,7 @@ const Nav = (props) => {
               <button>Home</button>
             </Link>
             <Link id='myinvestment' to={"/userStocks/" + props.user.uid}>
-              <button>My Investments</button>
+              <button>Your purchase histroy</button>
             </Link>
             <Link id='myinvestment' to={"/dashboard/" + props.user.uid}>
               <button>My Dashboard</button>

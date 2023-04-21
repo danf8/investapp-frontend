@@ -1,22 +1,24 @@
 import '../css/userstock.css';
 
 const UserStockData = (props) => {
-  if(props.userStocks !== null) {
+  if(props.userStocks !== null && props.stocks !== null) {
     return(
       <div className='userstockM'>
-        <h1>Current Funds in Wallet: ${props.userStocks.currentMoney}</h1>
-        <h3>Total Value of Investments: ${props.totalInvestmentValues}</h3>
-        <ul>
-        {props.userStocks.ownedStocks.map((stock, i) => {
-          return(
-          <section className='userstock' key={i}>
-            <li><strong>Ticker Symbol: </strong>{stock[0].stockPurchased.symbol}</li>
-            <li><strong>Purchased Price: $</strong>{stock[0].stockPurchased.price}</li>
-            <li><strong>Current Price: $</strong>{props.currentPrice[0].price}</li>
-            <li><strong>Number of shares you own: </strong>{stock[0].ownedShares}</li>
-            <li><strong>Value of current owned shares: $</strong>{stock[0].stockPurchased.price * stock[0].ownedShares}</li>
-          </section>
-          )})}
+      <h1>Current Funds in Wallet: ${props.userStocks.currentMoney}</h1>
+      <h3>Total Value of Investments: ${props.totalInvestmentValues}</h3>
+      <ul>
+      {props.userStocks.ownedStocks.map((stock, i) => {
+        console.log(stock)
+        return(
+        <section className='userstock' key={i}>
+          <li><strong>Ticker Symbol: </strong>{stock.symbol}</li>
+          <li><strong>Purchased Price: $</strong>{stock.price}</li>
+          <li><strong>Current Price: $</strong>{stock.currentPrice}</li>
+          <li><strong>Number of shares you own: </strong>{stock.ownedShares}</li>
+          <li><strong>Value of current owned shares: $</strong>{stock.price * stock.ownedShares}</li>
+        </section>
+        )
+        })}
         </ul>
       </div>
     );
@@ -30,3 +32,5 @@ const UserStockData = (props) => {
 };
 
 export default UserStockData;
+
+
