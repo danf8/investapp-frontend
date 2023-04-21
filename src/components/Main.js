@@ -15,22 +15,21 @@ const Main = (props) => {
     const [newBuyForm, setBuyForm] = useState({
         symbol: '',
         name: '',
-        amountOwned: 0,
+        ownedShares: 0,
         price: '',
+        currentPrice: 0,
     });
 
-
-    const API_URL = "https://investing-app-1.herokuapp.com/";
-    // const API_URL = "http://localhost:3002/";
+    // const API_URL = "https://investing-app-1.herokuapp.com/";
+    const API_URL = "http://localhost:3002/";
     let totalInvestmentValues = 0;
     let currentPrice;
 
     if(userStocks !== null){
         userStocks.ownedStocks.map((stock, i) =>  { 
-           currentPrice = stocks.filter((s) => s.symbol === userStocks.ownedStocks[i][0].stockPurchased.symbol);
-           totalInvestmentValues += (stock[0].stockPurchased.price * stock[0].ownedShares);
-           return totalInvestmentValues
-           });
+            totalInvestmentValues += (stock.price * stock.ownedShares);
+            return totalInvestmentValues
+        });
     };
 
     const openModal = () => {
@@ -55,7 +54,7 @@ const Main = (props) => {
                 setStocks(data);
             }
         } catch(error) {
-            
+    
         };
     }, [props.user]);
 
@@ -135,6 +134,23 @@ const Main = (props) => {
         };
     }, [props.user]);
 
+    const updateUserStockValues = useCallback(async () => {
+        try{
+            if (props.user){
+                const token = await props.user.getIdToken();
+                await fetch(API_URL + 'user/update/' + props.user.uid, {
+                    method: 'PUT', 
+                    headers: {
+                        'Content-Type': 'Application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                });
+            }
+        } catch(error) {
+            // console.log(error)
+        }
+    }, [props.user]);
+
     useEffect(() => {
             setInterval(() => {
             const time = new Date();
@@ -146,17 +162,18 @@ const Main = (props) => {
         }, 1000* 60 * 60);
         if(props.user) {
             getStocks();
+            // updateUserStockValues()
             getUserStocks();
         }else{
             getStocks(null);
         }
-    }, [props.user, getStocks, updateStockValues, getUserStocks]);
+    }, [props.user, getStocks, updateStockValues, getUserStocks ]);
 
         return(
             <main>
                 <Routes>
                     <Route path='/' element={<Homepage user={props.user} API_URL={API_URL}/>}/>
-                    <Route path='/stocks' element={<Index user={props.user} stocks={stocks} openModal={openModal} closeModal={closeModal}/>}/>
+                    <Route path='/stocks' element={<Index user={props.user} stocks={stocks} openModal={openModal} closeModal={closeModal} updateUserStockValues={updateUserStockValues} userStocks={userStocks}/>}/>
                     <Route path='/stocks/:id' element={ <Show closeModal={closeModal}
                                                                 openModal={openModal}
                                                                 modalOpen={props.modalOpen}
@@ -180,7 +197,7 @@ const Main = (props) => {
                                                                             stocks={stocks}
                                                                             totalInvestmentValues={totalInvestmentValues}
                                                                             currentPrice={currentPrice}/>}/>
-                    <Route path='/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks} totalInvestmentValues={totalInvestmentValues} />}/>
+                    <Route path='/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks} totalInvestmentValues={totalInvestmentValues} stocks={stocks} />}/>
                 </Routes>
             </main>
         );
