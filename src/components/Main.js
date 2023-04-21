@@ -20,8 +20,8 @@ const Main = (props) => {
         currentPrice: 0,
     });
 
-    // const API_URL = "https://investing-app-1.herokuapp.com/";
-    const API_URL = "http://localhost:3002/";
+    const API_URL = "https://investing-app-1.herokuapp.com/";
+    // const API_URL = "http://localhost:3002/";
     let totalInvestmentValues = 0;
     let currentPrice;
 
