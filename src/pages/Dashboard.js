@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 
 const Dashboard = (props) => {
     if(props.userStocks !== null) {
