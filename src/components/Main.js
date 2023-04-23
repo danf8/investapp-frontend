@@ -23,7 +23,6 @@ const Main = (props) => {
     const API_URL = "https://investing-app-1.herokuapp.com/";
     // const API_URL = "http://localhost:3002/";
     let totalInvestmentValues = 0;
-    let currentPrice;
 
     if(userStocks !== null){
         userStocks.ownedStocks.map((stock, i) =>  { 
@@ -96,7 +95,7 @@ const Main = (props) => {
         } catch(error) {
         // console.log(error);
         }
-    }, [props.user])
+    }, [props.user]);
 
     const updateStockComment = async (stock, id) => {
         try {
@@ -195,9 +194,8 @@ const Main = (props) => {
                     <Route path='/userStocks/:id' element={<UserStockData user={props.user}
                                                                             userStocks={userStocks}
                                                                             stocks={stocks}
-                                                                            totalInvestmentValues={totalInvestmentValues}
-                                                                            currentPrice={currentPrice}/>}/>
-                    <Route path='/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks} totalInvestmentValues={totalInvestmentValues} stocks={stocks} />}/>
+                                                                            totalInvestmentValues={totalInvestmentValues}/>}/>
+                    <Route path='user/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks} totalInvestmentValues={totalInvestmentValues} stocks={stocks} />}/>
                 </Routes>
             </main>
         );

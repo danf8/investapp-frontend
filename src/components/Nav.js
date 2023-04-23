@@ -26,7 +26,7 @@ const Nav = (props) => {
             <Link id='myinvestment' to={"/userStocks/" + props.user.uid}>
               <button>Your purchase histroy</button>
             </Link>
-            <Link id='myinvestment' to={"/dashboard/" + props.user.uid}>
+            <Link id='myinvestment' to={"user/dashboard/" + props.user.uid}>
               <button>My Dashboard</button>
             </Link>
             {(!props.user.photoURL) &&

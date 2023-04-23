@@ -8,7 +8,6 @@ const UserStockData = (props) => {
       <h3>Total Value of Investments: ${props.totalInvestmentValues}</h3>
       <ul>
       {props.userStocks.ownedStocks.map((stock, i) => {
-        console.log(stock)
         return(
         <section className='userstock' key={i}>
           <li><strong>Ticker Symbol: </strong>{stock.symbol}</li>

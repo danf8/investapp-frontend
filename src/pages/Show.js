@@ -26,6 +26,13 @@ const Show = (props) => {
        event.preventDefault();
        props.updateOwnedStocks(props.newBuyForm, props.user.uid);
        props.openModal();
+       props.setBuyForm({
+        symbol: '',
+        name: '',
+        ownedShares: 0,
+        price: '',
+        currentPrice: 0,
+    });
     };
 
     const handleCommentChange = (event) => {
