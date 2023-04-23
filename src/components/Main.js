@@ -57,11 +57,11 @@ const Main = (props) => {
         };
     }, [props.user]);
 
-    const updateOwnedStocks = async (purchasedStock, id) => {
+    const updateOwnedStocks = async (purchasedStock, id, urlString) => {
         try {
         if(props.user) {
         const token = await props.user.getIdToken();
-                await fetch((API_URL + 'users/' + id), {
+                await fetch((API_URL + urlString + id), {
                     method: 'PUT',
                     headers: {
                         'Access-Control-Allow-Origin': 'http://localhost:3002',
@@ -101,7 +101,7 @@ const Main = (props) => {
         try {
             if(props.user) {
                 const token = await props.user.getIdToken();
-                await fetch(API_URL + id, {
+                await fetch(API_URL + 'stocks/' + id, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'Application/json',
@@ -161,7 +161,6 @@ const Main = (props) => {
         }, 1000* 60 * 60);
         if(props.user) {
             getStocks();
-            // updateUserStockValues()
             getUserStocks();
         }else{
             getStocks(null);
@@ -183,6 +182,7 @@ const Main = (props) => {
                                                                 user={props.user}
                                                                 newBuyForm={newBuyForm}
                                                                 setBuyForm={setBuyForm}
+                                                                userStocks={userStocks}
                                                                 />}/>
                     <Route path='/signin' element={<Signin user={props.user}/>}/>
                     <Route path='/signup' element={<SignUp/>}/>
@@ -195,7 +195,7 @@ const Main = (props) => {
                                                                             userStocks={userStocks}
                                                                             stocks={stocks}
                                                                             totalInvestmentValues={totalInvestmentValues}/>}/>
-                    <Route path='user/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks} totalInvestmentValues={totalInvestmentValues} stocks={stocks} />}/>
+                    <Route path='/user/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks} totalInvestmentValues={totalInvestmentValues} stocks={stocks} />}/>
                 </Routes>
             </main>
         );

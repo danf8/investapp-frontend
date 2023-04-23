@@ -22,7 +22,7 @@ const Index = (props) => {
     if (searchTerm) {
       return filteredStocks && filteredStocks.map((stock,index) => (
           <div className="stocks" key={index}>
-              <Link to={`/stocks/${stock._id}`}>
+              <Link to={`/stocks/${stock.symbol}`}>
                   <p className="stock-name">{stock.name}</p>
               </Link>
               <p>${stock.price}</p>
@@ -31,7 +31,7 @@ const Index = (props) => {
     } else {
       return props.stocks.map((stock,index) => (
           <div className="stocks" key={index}>
-              <Link to={`/stocks/${stock._id}`}>
+              <Link to={`/stocks/${stock.symbol}`}>
                   <p className="stock-name">{stock.name}</p>
               </Link>
               <p>${stock.price}</p>
