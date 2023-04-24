@@ -6,21 +6,23 @@ import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [mongoUser, setMongoUser] = useState(null)
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(()=>{
-    const unsubscribe = auth.onAuthStateChanged(user => {
-        setUser(user);
-    });
-    return()=>{
-      unsubscribe();
+      const unsubscribe = auth.onAuthStateChanged(user => {
+        setMongoUser(null);
+          setUser(user);
+      });
+      return()=>{
+        unsubscribe();
     }
   }, []);
 
   return (
     <div className="App">
         <Nav user={user} />
-        <Main user={user} modalOpen={modalOpen} setModalOpen={setModalOpen} />
+        <Main user={user} modalOpen={modalOpen} setModalOpen={setModalOpen} mongoUser={mongoUser} setMongoUser={setMongoUser}/>
     </div>
   );
 };

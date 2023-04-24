@@ -7,18 +7,17 @@ const Index = (props) => {
   const [filteredStocks, setFilteredStocks] = useState(props.stocks);
 
   const handleSearchTermChange = (event) => {
-      setSearchTerm(event.target.value);
-      const filteredStocks = props.stocks.filter((stock) =>
-          stock.name && stock.name.toLowerCase().includes(event.target.value.toLowerCase())
+    setSearchTerm(event.target.value);
+    const filteredStocks = props.stocks.filter((stock) =>
+      stock.name && stock.name.toLowerCase().includes(event.target.value.toLowerCase())
   );
-      setFilteredStocks(filteredStocks);
+    setFilteredStocks(filteredStocks);
   };
 
   const loadStocks = () => {
-    if(props.userStocks){
+    if (props.userStocks && props.userStocks.length > 0) {
       props.updateUserStockValues();
-    };
-
+    }
     if (searchTerm) {
       return filteredStocks && filteredStocks.map((stock,index) => (
           <div className="stocks" key={index}>
@@ -41,28 +40,28 @@ const Index = (props) => {
     };
 
   const loadingStocks = () => {
-      return <h1>Loading Stocks....</h1>;
+    return <h1>Loading Stocks....</h1>;
   };
 
   return (
+    <>
+      {props.user ? (
       <>
-        {props.user ? (
-        <>
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder="Search Stocks"
-              value={searchTerm}
-              onChange={handleSearchTermChange}
-            />
-          </div>
-          <section>{props.stocks ? loadStocks() : loadingStocks()}</section>
-        </>
-        ) : (
-        <h2>Please Login to access stock info</h2>
-        )}
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search Stocks"
+            value={searchTerm}
+            onChange={handleSearchTermChange}
+          />
+        </div>
+        <section>{props.stocks ? loadStocks() : loadingStocks()}</section>
       </>
-    );
+      ) : (
+      <h2>Please Login to access stock info</h2>
+      )}
+    </>
+  );
 };
 
 export default Index;

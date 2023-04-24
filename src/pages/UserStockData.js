@@ -5,7 +5,7 @@ const UserStockData = (props) => {
     return(
       <div className='userstockM'>
       <h1>Current Funds in Wallet: ${props.userStocks.currentMoney}</h1>
-      <h3>Total Value of Investments: ${props.totalInvestmentValues}</h3>
+      <h3>Total Value of Investments: ${props.userStocks.totalInvestmentValue}</h3>
       <ul>
       {props.userStocks.ownedStocks.map((stock, i) => {
         return(

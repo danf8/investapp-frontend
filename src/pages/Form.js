@@ -22,6 +22,7 @@ const Form = (props) => {
         
   const handleSubmit = async (event) => {
     event.preventDefault();
+    props.setMongoUser(true)
     updateNewUser(startValue);
     navigate('/stocks', {replace: true});
   };
