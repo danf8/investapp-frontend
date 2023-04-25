@@ -34,8 +34,6 @@ const Homepage = (props) => {
                     }
                 });
                 const data = await response.json();
-                    //reverse stockindexstate to display information in correct over on chart
-                data[0].historical = data[0].historical.reverse()
                 setStockIndex(data);
         } catch (error) {
             // console.error(error);

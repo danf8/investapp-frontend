@@ -2,6 +2,26 @@ import { useParams } from 'react-router-dom';
 import { useState} from 'react';
 import Modal from 'react-modal';
 import '../css/show.css';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+  } from 'chart.js';
+  import { Line } from 'react-chartjs-2';
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+  );
  
 const Show = (props) => {
     const { id } = useParams();
@@ -75,10 +95,37 @@ const Show = (props) => {
     };
 
     const loadedStocks = () => {
+        const chartDate = stock.historical.map((s, i) => s.date);
+        const chartPrices = stock.historical.map((s, i) => s.close);
+        const options = {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top'
+              },
+              title: {
+                display: true,
+                text: stock.name,
+              },
+            },
+          };
+    
+          const data = {
+            labels: chartDate,
+            datasets: [
+              {
+                label: `${stock.name} 60 Day Historical Prices`,
+                data: chartPrices,
+                borderColor: 'rgba(94, 219, 94, 1)',
+                backgroundColor: 'rgba(162, 216, 162, 1.0)',
+              },
+            ],
+          };
         return(
             <>
                 <h1>{stock.name} ({stock.symbol})</h1>
                 <p className="price">Current Price: ${stock.price} ( {percentChange}% )</p>
+                <Line options={options} data={data} />
                 <hr />
                 <br />
                 <div className="info">

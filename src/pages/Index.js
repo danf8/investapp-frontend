@@ -16,12 +16,11 @@ const Index = (props) => {
 
   const loadStocks = () => {
     if (props.userStocks && props.userStocks.length > 0) {
-      props.updateUserStockValues();
     }
     if (searchTerm) {
       return filteredStocks && filteredStocks.map((stock,index) => (
           <div className="stocks" key={index}>
-              <Link to={`/stocks/${stock.symbol}`}>
+              <Link to={`/stocks/${stock.symbol}`} >
                   <p className="stock-name">{stock.name}</p>
               </Link>
               <p>${stock.price}</p>
@@ -55,7 +54,7 @@ const Index = (props) => {
             onChange={handleSearchTermChange}
           />
         </div>
-        <section>{props.stocks ? loadStocks() : loadingStocks()}</section>
+        <section >{props.stocks ? loadStocks() : loadingStocks()}</section>
       </>
       ) : (
       <h2>Please Login to access stock info</h2>

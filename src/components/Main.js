@@ -81,13 +81,15 @@ const Main = (props) => {
                 },
             });
             const data = await response.json();
-            // console.log('data', data)
             setUserStocks(data);
+            if(data){
+                props.setMongoUser(true);
+            };
         }
         } catch(error) {
         // console.log(error);
         }
-    }, [props.user]);
+    }, [props.user, props.setMongoUser]);
 
     const updateStockComment = async (stock, id) => {
         try {
@@ -157,13 +159,13 @@ const Main = (props) => {
                 updateStockValues();
             }
         }, 1000* 60 * 60);
+        
         if(props.mongoUser){
-            updateUserStockValues()
+            updateUserStockValues();
         }
         if(props.user) {
             getStocks();
             getUserStocks();
-            // updateUserStockValues()
         }else{
             getStocks(null);
         }

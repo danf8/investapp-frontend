@@ -11,8 +11,8 @@ function App() {
 
   useEffect(()=>{
       const unsubscribe = auth.onAuthStateChanged(user => {
+        setUser(user);
         setMongoUser(null);
-          setUser(user);
       });
       return()=>{
         unsubscribe();
