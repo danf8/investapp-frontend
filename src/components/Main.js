@@ -175,7 +175,7 @@ const Main = (props) => {
         <main>
             <Routes>
                 <Route path='/' element={<Homepage user={props.user} API_URL={API_URL}/>}/>
-                <Route path='/stocks' element={<Index user={props.user} stocks={stocks} openModal={openModal} closeModal={closeModal} updateUserStockValues={updateUserStockValues} userStocks={userStocks}/>}/>
+                <Route path='/stocks' element={<Index user={props.user} stocks={stocks} openModal={openModal} closeModal={closeModal} updateUserStockValues={updateUserStockValues} userStocks={userStocks} API_URL={API_URL} setStocks={setStocks}/>}/>
                 <Route path='/stocks/:id' element={ <Show closeModal={closeModal}
                                                             openModal={openModal}
                                                             modalOpen={props.modalOpen}
