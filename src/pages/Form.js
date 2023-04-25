@@ -15,6 +15,7 @@ const Form = (props) => {
     setStartValue((prevState) => ({
       ...prevState,
        ownedStocks: [],
+       performance,
       [event.target.name]: parseInt([event.target.value]),
       startingMoney: parseInt([event.target.value]),
     }));
