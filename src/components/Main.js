@@ -68,12 +68,12 @@ const Main = (props) => {
         // console.log(error);
         }
     }
-
+    const { user, setMongoUser } = props;
     const getUserStocks = useCallback(async () => {
         try {
-        if(props.user) {
-          const token = await props.user.getIdToken();
-            const response = await fetch((API_URL + 'userstocks/' + props.user.uid), {
+        if(user) {
+          const token = await user.getIdToken();
+            const response = await fetch((API_URL + 'userstocks/' + user.uid), {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'Application/json',
@@ -83,13 +83,13 @@ const Main = (props) => {
             const data = await response.json();
             setUserStocks(data);
             if(data){
-                props.setMongoUser(true);
+                setMongoUser(true);
             };
         }
         } catch(error) {
         // console.log(error);
         }
-    }, [props.user, props.setMongoUser]);
+    }, [user, setMongoUser]);
 
     const updateStockComment = async (stock, id) => {
         try {
