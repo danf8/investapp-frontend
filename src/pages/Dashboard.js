@@ -57,7 +57,7 @@ const Dashboard = (props) => {
     };
 
     if(props.userStocks !== null) {
-        const portfolioReturn = (((props.userStocks.totalInvestmentValue + props.userStocks.currentMoney) - props.userStocks.startingMoney) / props.userStocks.startingMoney) * 100;
+        const portfolioReturn = ((((props.userStocks.totalInvestmentValue + props.userStocks.currentMoney) - props.userStocks.startingMoney) / props.userStocks.startingMoney) * 100).toLocaleString(undefined, { maximumFractionDigits: 2});
         return(
             <>
                 <div>

@@ -200,11 +200,12 @@ const Main = (props) => {
                                                     />}/>
                 <Route path='/userStocks/:id' element={<UserStockData user={props.user}
                                                                         userStocks={userStocks}
-                                                                        stocks={stocks}/>}/>
+                                                                        stocks={stocks}
+                                                                        />}/>
                 <Route path='/user/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks} stocks={stocks}/>}/>
             </Routes>
         </main>
     );
-    };
+};
 
 export default Main;

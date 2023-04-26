@@ -28,10 +28,10 @@ const Show = (props) => {
     const stocks = props.stocks;
     const stock = stocks ? stocks.find((s) => s.symbol === id) : null;
     const checkUserStockAmt = props.userStocks.ownedStocks ? props.userStocks.ownedStocks.find((s) => s.symbol === id && s.ownedShares > 0) : null;
-    const percentChange = stock.changesPercentage.toLocaleString(undefined, { maximumFractionDigits: 3});
     const [newForm, setCommentForm] = useState({
         comments: ''
     });
+    
     const [sellStock, setSellStock] = useState({
         symbol: '',
         currentPrice: stock.price,
@@ -124,7 +124,7 @@ const Show = (props) => {
         return(
             <>
                 <h1>{stock.name} ({stock.symbol})</h1>
-                <p className="price">Current Price: ${stock.price} ( {percentChange}% )</p>
+                <p className="price">Current Price: ${stock.price} ( {stock.changesPercentage}% )</p>
                 <Line options={options} data={data} />
                 <hr />
                 <br />
