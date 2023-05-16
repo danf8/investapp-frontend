@@ -73,7 +73,7 @@ const Homepage = (props) => {
       };
 
     const loadingChart = () => {
-        return <h1>Loading chart.....</h1>;
+        return <h1>Loading chart.....</h1>
     };
 
     useEffect(() => {
@@ -86,7 +86,7 @@ const Homepage = (props) => {
         <div id='homepage'>
             <h1>Start learning about stocks with just one click - Log in now!</h1><br/><br/>
         </div>
-        ) : null};
+        ) : null}
       {stockIndexState ?  loadChart(): loadingChart()}
         </>
     );
