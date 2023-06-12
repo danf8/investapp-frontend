@@ -4,8 +4,10 @@ import { useState } from 'react';
 import '../css/signin.css';
 
 function SignIn(props) {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  // commeneted out sections to allow users to use app without signing up.
+  // set state to allow users to use app without signing up.
+  const [email, setEmail] = useState('user1@email.com');
+  const [password, setPassword] = useState('1234567');
   const navigate = useNavigate();
 
   const handleSignIn = async (event) => {
@@ -19,26 +21,32 @@ function SignIn(props) {
   };
 
   const handleEmailChange = (event) => {
+    // setEmail('user1@email.com');
     setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
+    // setPassword('1234567');
     setPassword(event.target.value);
   };
 
   return (
     <div className='signin-form'>
-      <h1>Sign In with Email</h1><br/><br/>
+      {/* <h1>Sign In with Email</h1><br/><br/> */}
+      <h1>Click Below to Enter</h1>
       <form onSubmit={handleSignIn}>
         <label>
-          <input type="email" name="email" placeholder='Email' onChange={handleEmailChange} required/>
+          {/* <input type="email" name="email" value='Email'  onChange={handleEmailChange} required/> */}
+          <input type="email" name="email" placeholder='Email' hidden onChange={handleEmailChange} />
         </label><br/><br/>
         <label>
-          <input type="password" name="password" placeholder='Password' onChange={handlePasswordChange}/>
+          {/* <input type="password" name="password" value='Password'  onChange={handlePasswordChange}/> */}
+          <input type="password" name="password" placeholder='Password' hidden onChange={handlePasswordChange}/>
         </label><br/><br/>
         <div id='btnLi'>
-          <input id='signinBtn' type='submit' value='Sign In'/><br/><br/>
-          <Link id='signUpBtn' to='/signup'>Sign Up</Link><br/><br/><br/>
+          <input id='signinBtn' type='submit' value='Click here to use test account'/>
+          {/* <input id='signinBtn' type='submit' value='Sign In'/> */}
+          <Link id='signUpBtn' to='/signup'>Sign Up</Link>
           <small id='sSI'>or you can sign in with</small>
           <Link to='/signin'>
             <button id='GoogleSI' onClick={loginWithGoogle}>

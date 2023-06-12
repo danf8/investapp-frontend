@@ -84,7 +84,7 @@ const Homepage = (props) => {
       <>
       {!props.user ? (
         <div id='homepage'>
-            <h1>Start learning about stocks with just one click - Log in now!</h1><br/><br/>
+          <h1>Start learning about stocks with just one click - Log in now!</h1>
         </div>
         ) : null}
       {stockIndexState ?  loadChart(): loadingChart()}

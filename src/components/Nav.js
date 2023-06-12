@@ -1,14 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { loginWithGoogle, logout } from '../firebase';
+// import { loginWithGoogle, logout } from '../firebase';
+import { logout } from '../firebase';
 import '../css/nav.css';
 
 const Nav = (props) => {
   const navigate = useNavigate();
 
-  const handleLogin = async()=>{
-    await loginWithGoogle();
-    navigate('/form');
-  };
+  // commented out sections to allow users to use app without signing up.
+
+  // const handleLogin = async()=>{
+  //   await loginWithGoogle();
+  //   navigate('/form');
+  // };
 
   const handleLogout = async()=>{
     await logout();
@@ -34,10 +37,10 @@ const Nav = (props) => {
             }
             {(props.user.photoURL) &&
             <>
-            <li id='welcome'>Welcome, {props.user.displayName.split(' ', 1)}</li>
+              <li id='welcome'>Welcome, {props.user.displayName.split(' ', 1)}</li>
               <li>
-              <img src={props.user.photoURL} alt={props.user.displayName} />
-            </li>
+                <img src={props.user.photoURL} alt={props.user.displayName} />
+              </li>
             </>
             }
             <li>
@@ -49,16 +52,19 @@ const Nav = (props) => {
         ) : ( 
           <>
             <ul>
-            <Link to='/signin'>
-              <button>Sign in</button>
-            </Link>
-            <Link to='/signup'>
-              <button>Sign up</button>
-            </Link>
-            <Link to='/stocks'>
-              <button onClick={handleLogin}>Login with Google</button>
-            </Link>
-              </ul>
+              {/* <Link to='/signin'>
+                <button>Sign in</button>
+              </Link> */}
+              <Link to='/signin'>
+                <button>Click here to start</button>
+              </Link>
+              {/* <Link to='/signup'>
+                <button>Sign up</button>
+              </Link>
+              <Link to='/stocks'>
+                <button onClick={handleLogin}>Login with Google</button>
+              </Link> */}
+            </ul>
           </>
         )}
       </ul>

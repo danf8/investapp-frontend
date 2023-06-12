@@ -1,3 +1,13 @@
-#homepage h1{
+/* #homepage h1{
     margin-left: 350px;
+} */
+
+main{
+    display: flex;
+    align-items: center;
 }
+
+/* canvas{
+    display: flex;
+    justify-content: center;
+} */
