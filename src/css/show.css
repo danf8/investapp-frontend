@@ -1,6 +1,10 @@
 section {
     margin-top: 25px;
 }
+canvas {
+    max-width: 50em;
+    max-height: 25em;
+}
 
 input[type='submit'] {
     padding: 10px;
@@ -26,10 +30,6 @@ input[type="text"],input[type="number"]{
     margin: 3px;
 }
 
-#purchaseBox input[type="submit"] {
-    width: 280px;
-}
-
 
 hr {
     width: 90%;
@@ -43,6 +43,8 @@ hr {
     border-radius: 6px;
     border-color: #d1d3db;
     justify-content: center;
+    width: 490px;
+    padding: 1rem;
 }
 
 .commentList{
@@ -101,7 +103,24 @@ hr {
     align-items: center;
 }
 
-#purchaseBox{
+.buyOrSell{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    border: solid;
+    border-radius: 6px;
+    border-color: #d1d3db;
+    width: 360px;
+    height: 150px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* #purchaseBox{
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -113,4 +132,4 @@ hr {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     margin: auto;
     margin-top: 20px;
-}
+} */
