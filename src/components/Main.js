@@ -8,6 +8,7 @@ import Homepage from '../pages/Homepage';
 import Form from '../pages/Form';
 import UserStockData from '../pages/UserStockData';
 import Dashboard from '../pages/Dashboard';
+import ModalAction from '../pages/ModalAction';
 
 const Main = (props) => {
     const [stocks, setStocks] = useState(null);
@@ -20,14 +21,26 @@ const Main = (props) => {
         currentPrice: 0,
     });
 
-    const API_URL = "https://investing-app-1.herokuapp.com/";
-    // const API_URL = "http://localhost:3002/";
+    // const API_URL = "https://investing-app-1.herokuapp.com/";
+    const API_URL = "http://localhost:3002/";
 
     const openModal = () => {
         props.setModalOpen(true);
+        // props.setModalId(id)
     };
+    // const openModalDisplay = (id, message) => {
+    //     console.log(id)
+    //     props.setModalOpen(true);
+    //     props.setModalId(id)
+    //     props.setMessage(message)
+    // };
 
-    const closeModal = () => {
+    // const closeModalDisplay = (id, message) => {
+    //     props.setModalOpen(false);
+    //     props.setModalId('')
+    //     props.setMessage('')
+    // };
+    const closeModal = (id, message) => {
         props.setModalOpen(false);
     };
 
@@ -175,9 +188,12 @@ const Main = (props) => {
         <main>
             <Routes>
                 <Route path='/' element={<Homepage user={props.user} API_URL={API_URL}/>}/>
-                <Route path='/stocks' element={<Index user={props.user} stocks={stocks} openModal={openModal} closeModal={closeModal} updateUserStockValues={updateUserStockValues} userStocks={userStocks} API_URL={API_URL} setStocks={setStocks}/>}/>
-                <Route path='/stocks/:id' element={ <Show closeModal={closeModal}
+                <Route path='/stocks' element={<Index user={props.user} stocks={stocks} updateUserStockValues={updateUserStockValues} userStocks={userStocks} API_URL={API_URL} setStocks={setStocks}/>}/>
+                <Route path='/stocks/:id' element={ <Show 
+                                                            closeModal={closeModal}
+                                                            // openModalDisplay={openModalDisplay}
                                                             openModal={openModal}
+                                                            // closeModalDisplay={closeModalDisplay}
                                                             modalOpen={props.modalOpen}
                                                             setModalOpen={props.setModalOpen}
                                                             stocks={stocks}
@@ -187,6 +203,8 @@ const Main = (props) => {
                                                             newBuyForm={newBuyForm}
                                                             setBuyForm={setBuyForm}
                                                             userStocks={userStocks}
+                                                            modalId={props.modalId}
+                                                            message={props.message}
                                                             />}/>
                 <Route path='/signin' element={<Signin user={props.user}/>}/>
                 <Route path='/signup' element={<SignUp/>}/>
@@ -203,9 +221,16 @@ const Main = (props) => {
                                                                         stocks={stocks}
                                                                         />}/>
                 <Route path='/user/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks} stocks={stocks}/>}/>
+                <Route element={<ModalAction modalId={props.modalId} message={props.message} />}/>
+                {/* <Route element={<ModalAction closeModalDisplay={closeModalDisplay} openModalDisplay={openModalDisplay} modalId={props.modalId} message={props.message} />}/> */}
             </Routes>
         </main>
     );
 };
 
 export default Main;
+
+    // modalId={modalId}
+    // setModalId={setModalId}
+    // message={message}
+    // setMessage={setMessage}

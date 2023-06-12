@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState} from 'react';
 import Modal from 'react-modal';
+// import ModalAction from './ModalAction';
 import '../css/show.css';
 import {
     Chart as ChartJS,
@@ -59,6 +60,8 @@ const Show = (props) => {
     const handleSellStocksUpdate = (event) => {
         event.preventDefault();
         props.updateOwnedStocks(sellStock, props.user.uid, "user/form/sell/");
+        // props.openModal();
+        props.openModalDisplay('sellBox', 'Stock Sold!');
         setSellStock({
             symbol: stock.symbol,
             currentPrice: stock.price,
@@ -69,6 +72,7 @@ const Show = (props) => {
     const handleOwnedStocksUpdate = (event) => {
        event.preventDefault();
        props.updateOwnedStocks(props.newBuyForm, props.user.uid, 'users/');
+    //    props.openModalDisplay('purchaseBox', 'Stock Purchased!');
        props.openModal();
        props.setBuyForm({
         symbol: '',
@@ -148,9 +152,9 @@ const Show = (props) => {
 
     const availableToSell = () => {
         return(
-            <form onSubmit={handleSellStocksUpdate}>
-            <input type="number" name="soldShares" value={sellStock.soldShares} placeholder='Enter the number of shares to sell' onChange={handleSellChange} />
-            <input type='submit' value='Sell'/>
+            <form id='sellBox' onSubmit={handleSellStocksUpdate}>
+                <input type="number" name="soldShares" value={sellStock.soldShares} placeholder='Enter the number of shares to sell' onChange={handleSellChange} />
+                <input type='submit' value='Sell'/>
             </form>
         );
     };
@@ -170,6 +174,7 @@ const Show = (props) => {
     const loadingStocks = () => {
         return <h1>Loading Stocks...</h1>;
     };
+    console.log(props.modalOpen)
 
     return(
         <div className="stock">
@@ -182,11 +187,13 @@ const Show = (props) => {
                     <input type='text' name='comments' value={newForm.comments} placeholder='Add a comment' onChange={handleCommentChange}/>
                     <input type='submit' value='submit'/>
                 </form>
-                <form id="purchaseBox" onSubmit={handleOwnedStocksUpdate}>
-                    <input type='number' name='ownedShares' value={props.newBuyForm.ownedShares} placeholder='Enter the number of shares to purchase' onChange={handleBuyChange}/>
-                    <input type='submit' value='Buy it now'/>
-                </form>
-                {checkUserStockAmt ? availableToSell() : notAvailableToSell()}
+                <div className='buyOrSell'>
+                    <form id="purchaseBox" onSubmit={handleOwnedStocksUpdate}>
+                        <input type='number' name='ownedShares' value={props.newBuyForm.ownedShares} placeholder='Enter the number of shares to purchase' onChange={handleBuyChange}/>
+                        <input type='submit' value='Buy'/>
+                    </form>
+                    {checkUserStockAmt ? availableToSell() : notAvailableToSell()}
+                </div>
                 <Modal isOpen={props.modalOpen} onRequestClose={props.closeModal} appElement={document.getElementById('purchaseBox')} >
                     <h2>Stock Purchased!</h2>
                     <button onClick={props.closeModal}>Close</button>

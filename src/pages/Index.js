@@ -26,7 +26,7 @@ const Index = (props) => {
         };
       };
     } catch(error){
-      console.log(error)
+      // console.log(error)
     }
   }, [user, API_URL, searchTerm, setStocks, setSearchTerm])
 

@@ -8,6 +8,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [mongoUser, setMongoUser] = useState(null)
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalId, setModalId] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(()=>{
       const unsubscribe = auth.onAuthStateChanged(user => {
@@ -22,7 +24,15 @@ function App() {
   return (
     <div className="App">
         <Nav user={user} />
-        <Main user={user} modalOpen={modalOpen} setModalOpen={setModalOpen} mongoUser={mongoUser} setMongoUser={setMongoUser}/>
+        <Main user={user} modalOpen={modalOpen}
+         setModalOpen={setModalOpen}
+          mongoUser={mongoUser}
+           setMongoUser={setMongoUser}
+           modalId={modalId}
+           setModalId={setModalId}
+           message={message}
+           setMessage={setMessage}
+           />
     </div>
   );
 };
