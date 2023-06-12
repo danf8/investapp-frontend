@@ -8,7 +8,7 @@ import Homepage from '../pages/Homepage';
 import Form from '../pages/Form';
 import UserStockData from '../pages/UserStockData';
 import Dashboard from '../pages/Dashboard';
-import ModalAction from '../pages/ModalAction';
+// import ModalAction from '../pages/ModalAction';
 
 const Main = (props) => {
     const [stocks, setStocks] = useState(null);
@@ -21,8 +21,8 @@ const Main = (props) => {
         currentPrice: 0,
     });
 
-    // const API_URL = "https://investing-app-1.herokuapp.com/";
-    const API_URL = "http://localhost:3002/";
+    const API_URL = "https://investing-app-1.herokuapp.com/";
+    // const API_URL = "http://localhost:3002/";
 
     const openModal = () => {
         props.setModalOpen(true);
@@ -221,7 +221,7 @@ const Main = (props) => {
                                                                         stocks={stocks}
                                                                         />}/>
                 <Route path='/user/dashboard/:id' element={<Dashboard user={props.user} userStocks={userStocks} stocks={stocks}/>}/>
-                <Route element={<ModalAction modalId={props.modalId} message={props.message} />}/>
+                {/* <Route element={<ModalAction modalId={props.modalId} message={props.message} />}/> */}
                 {/* <Route element={<ModalAction closeModalDisplay={closeModalDisplay} openModalDisplay={openModalDisplay} modalId={props.modalId} message={props.message} />}/> */}
             </Routes>
         </main>
